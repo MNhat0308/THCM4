@@ -1,0 +1,72 @@
+﻿@using THCM4.Models;
+@model ThanhVien
+
+@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+
+
+
+
+    
+    <div class=" register">
+        <h1 style="color:darkslategrey"> Đăng Ký</h1>
+        @using (Html.BeginForm())
+        {
+            <div class="col-md-4 register-top-grid">
+
+                <div>
+                    <span>Họ Và Tên</span>
+                    @Html.TextBox("HoTen")
+                </div>
+                <div>
+                    <span>Địa Chỉ</span>
+
+                    @Html.TextBox("DiaChi")
+                </div>
+                <div>
+                    <span>Email </span>
+                    @Html.TextBox("Email")
+                </div>
+                <div>
+                    <span>Số Điện Thoại </span>
+                    @Html.TextBox("Sdt")
+                </div>
+                        
+                @*<a class="news-letter" href="#">
+                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
+                </a>*@
+            </div>
+            <div class="col-md-4 register-top-grid register-bottom-grid">
+                <div>
+                    <span>Tài Khoản</span>
+                    @Html.TextBox("TaiKhoan")
+                </div>
+
+                <div>
+                    <span>Mật Khẩu</span>
+                    @Html.Password("MatKhau")
+                </div>
+                <div>
+                    <span>Nhập Lại Mật Khẩu</span>
+                    @Html.Password("NLMK")
+                </div>
+                <div>
+                    @Html.MathCaptcha();
+                </div>
+                <input type="submit" value="submit">
+            </div>
+                }
+
+
+
+
+            </div>
+
+
+
