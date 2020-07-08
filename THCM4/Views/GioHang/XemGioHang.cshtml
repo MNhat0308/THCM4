@@ -1,0 +1,129 @@
+﻿@using THCM4.Models
+
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <div>
+        Giỏ Hàng Trống
+    </div>
+}
+else
+{
+
+    @*<table class="col-md-8  ">
+            <tr>
+                <td>Tên Sản Phẩm</td>
+                <td>Số Lượng</td>
+                <td> Hình Ảnh</td>
+                <td>Đơn Giá</td>
+                <td>Thành Tiền</td>
+
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.TenSP </td>
+                    <td>@item.SoLuong</td>
+                    <td>
+                        <img src="@Url.Content("~/Content/AnhData/"+item.HinhAnh)" alt="asdas" width="50" height="50">
+                    </td>
+                    <td>@item.DonGia.ToString("#,##") VND</td>
+                    <td>@item.ThanhTien.ToString("#,##") VND </td>
+                    <td>
+                        <a>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP })</a>
+                        <a> @Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP })  </a>
+                    </td>
+
+
+                </tr>
+            }
+
+
+
+
+        </table>*@
+    <link rel="stylesheet" href="~/Content/CSS1.css" media="screen" title="no title" charset="utf-8">
+    <div class="title">
+        Giỏ Hàng
+    </div>
+    <div class="item ">
+
+        <div class="buttons">
+
+        </div>
+
+        <div style="margin-top:20px;padding: 0px 30px 0px 60px">
+
+            <p>Hình Ảnh</p>
+        </div>
+
+        <div style="margin-top:20px;padding: 0px 0px 0px 65px">
+            <span>Tên Sản Phẩm</span>
+
+        </div>
+
+        <div style="margin-top:20px;padding: 0px 50px 0px 70px">
+            <span>Số Lượng</span>
+
+        </div>
+
+        <div class="total-price"> Thành Tiền </div>
+
+
+
+
+    </div>
+    foreach (var item in Model)
+    {
+
+
+        <div class="item ">
+            <div class="buttons">
+                <span>@Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP }) </span>
+                <br />
+
+
+            </div>
+
+            <div class="image" style="height:130px;width:130px">
+                <img src="@Url.Content("~/Content/AnhData/"+item.HinhAnh)" alt="" />
+            </div>
+
+            <div class="description">
+                <span>@item.TenSP</span>
+
+            </div>
+
+            <div class="quantity">
+
+                <input type="text" name="name" value="@item.SoLuong">
+
+            </div>
+
+
+            <div class="total-price" style="padding-left:75px">@item.ThanhTien.ToString("#,##") VND </div>
+            <div class="total-price" style="padding-left:110px">
+                <span>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP }) </span>
+
+            </div>
+        </div>
+
+    }
+}
+<div class="col-md-9" style="text-align:right;padding-right:80px">
+    <input type="submit" name="name" value="Đặt Hàng" />
+    <br />    
+</div>
+
+<div class="col-md-9" style="text-align:right;padding-right:80px">
+    <input type="submit" name="name" value=" Mua Tiếp" />
+</div>
+
+    

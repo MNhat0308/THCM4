@@ -18,6 +18,9 @@ namespace THCM4.Controllers
 
             var lstMTBM = dt.SanPham.Where(n => n.MaLoaiSP == 2 && n.Loai == 0);
             ViewBag.ListMTBM = lstMTBM;
+
+          
+
             return View();
         }
         public ActionResult MenuPartial()
@@ -48,6 +51,27 @@ namespace THCM4.Controllers
         public ActionResult DangKy1()
         {
             return View();
+        }
+     
+        public ActionResult Login(FormCollection f)
+
+        {
+            string Tk = f["txtTK"].ToString();
+            string Pw = f["txtMK"].ToString();
+            ThanhVien TV = dt.ThanhVien.SingleOrDefault(n => n.TaiKhoan == Tk && n.MatKhau == Pw);
+            if(TV!=null)
+            {
+                Session["TaiKhoan"] = TV;
+                return RedirectToAction("Index");
+            }
+            
+
+            return Content("Tài Khoản Hoặc Mật Khẩu Sai");
+        }
+        public ActionResult DangXuat()
+        {
+            Session["TaiKhoan"] = null;
+            return RedirectToAction("Index");
         }
       
 

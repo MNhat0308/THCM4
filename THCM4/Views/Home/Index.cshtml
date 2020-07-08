@@ -5,26 +5,27 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Layout/HomeLayout.cshtml";
 }
-@{ 
+@{
     IEnumerable<SanPham> lstDTM = ViewBag.ListDMT as IEnumerable<SanPham>;
-    IEnumerable<SanPham> lstMTBM = ViewBag.ListMTBM as IEnumerable<SanPham>;
+    IEnumerable<SanPham> lstMTBM = ViewBag  .ListMTBM as IEnumerable<SanPham>;
 
 }
 
 
-    <div class="content-top">
-        <h1>Điện Thoại Mới</h1>
-        <div class="grid-in">
+<div class="content-top">
+    <h1>Điện Thoại Mới</h1>
+    <div class="grid-in">
 
-            <div class="container">
-                @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", lstDTM)
-            </div>
-        </div>
-        <h1>Máy Tính Bảng Mới</h1>
-        <div class="grid-in">
-
-            <div class="container">
-                @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", lstMTBM)
-            </div>
+        <div class="container">
+            @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", lstDTM)
         </div>
     </div>
+    <h1>Máy Tính Bảng Mới</h1>
+    <div class="grid-in">
+
+        <div class="container">
+            @Html.Partial("~/Views/SanPham/SanPhamPartial.cshtml", lstMTBM)
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,247 @@
+﻿@using THCM4.Models;
+
+@model GioHang
+
+
+@{
+    ViewBag.Title = "ChinhSuaGioHang";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+@{
+    List<GioHang> lstGioHang = ViewBag.TB as List<GioHang>;
+}
+
+@*<table class="col-md-8  ">
+        <tr>
+            <td>Tên Sản Phẩm</td>
+            <td>Số Lượng</td>
+            <td>Hình Ảnh</td>
+            <td>Đơn Giá</td>
+            <td>Thành Tiền</td>
+            <td></td>
+
+        </tr>
+        @foreach (var item in lstGioHang)
+        {
+            if (Model.MaSP == item.MaSP)
+            {
+                using (Html.BeginForm("CapNhatGioHang", "GioHang"))
+                {
+                    <tr>
+                        @Html.Hidden("MaSP", item.MaSP)
+                        <td>@item.TenSP </td>
+                        <td>@Html.TextBox("SoLuong", item.SoLuong)</td>
+                        <td>
+
+                            <img src="@Url.Content("~/Content/AnhData/"+item.HinhAnh)" width="50" height="50">
+                        </td>
+
+                        <td>@item.DonGia.ToString("#,##") VND</td>
+                        <td>@item.ThanhTien.ToString("#,##") VND </td>
+                        <td> <input type="submit" name="name" value="Cập Nhật" /> </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+
+                    <td>@item.TenSP </td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.DonGia.ToString("#,##") VND</td>
+                    <td>@item.ThanhTien.ToString("#,##") VND </td>
+                    <td>
+                        <a>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP })</a>
+                        <a> @Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP })  </a>
+                    </td>
+
+                </tr>
+            }
+
+        }
+    </table>*@
+
+<link rel="stylesheet" href="~/Content/CSS1.css" media="screen" title="no title" charset="utf-8">
+<div class="title">
+    Giỏ Hàng
+</div>
+
+
+<div class="item">
+   
+    <div class="buttons">
+       
+    </div>
+
+    <div style="margin-top:20px;padding-right:95px;padding-left:50px">
+        <span>Hình Ảnh</span>
+    </div>
+
+    <div class="description">
+        <span>Tên Sản Phẩm</span>
+
+    </div>
+
+    <div style="margin-top:20px;padding-right:53px;" >
+        <span>Số Lượng</span>
+
+    </div>
+
+    <div class="total-price"> Thành Tiền </div>
+
+
+   
+
+</div>
+
+@foreach (var item in lstGioHang)
+{
+    if (Model.MaSP == item.MaSP)
+    {
+
+
+        using (Html.BeginForm("CapNhatGioHang", "GioHang"))
+        {
+            <div class="item">
+                @Html.Hidden("MaSP", item.MaSP)
+                <div class="buttons">
+                    <span>@Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP }) </span>
+                </div>
+
+                <div class="image" style="height:130px;width:130px">
+                    <img src="@Url.Content("~/Content/AnhData/" + item.HinhAnh)" alt="" />
+                </div>
+
+                <div class="description">
+                    <span>@item.TenSP</span>
+
+                </div>
+
+                <div class="quantity" style="margin-right:30px">
+                    <button class="plus-btn" type="button" name="button" >
+                        <img src="~/Content/plus.svg" alt="">
+                    </button>
+                    @Html.TextBox("SoLuong", item.SoLuong)  
+                    <button class="minus-btn" type="button" name="button">
+                        <img src="~/Content/minus.svg" alt="">
+                    </button>
+
+                </div>
+
+                <div class="total-price">@item.ThanhTien.ToString("#,##") VND </div>
+
+
+                <input type="submit" class="btncapnhat" name="name" value="Cập Nhật" />
+
+            </div>
+        }
+    }
+    else
+    {
+        <div class="item">
+            @Html.Hidden("MaSP", item.MaSP)
+            <div class="buttons">
+                <span>@Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP }) </span>
+            </div>
+
+            <div class="image" style="height:130px;width:130px">
+                <img src="@Url.Content("~/Content/AnhData/" + item.HinhAnh)" alt="" />
+            </div>
+
+            <div class="description">
+                <span>@item.TenSP</span>
+
+            </div>
+
+            <div class="quantity">
+               
+                <input type="text" name="name" value="@item.SoLuong">
+              
+            </div>
+
+
+            <div class="total-price" style="margin-left:90px" >@item.ThanhTien.ToString("#,##") VND </div>
+            <div style="margin-top:20px;margin-left:40px">
+                <span>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP }) </span>
+
+            </div>
+
+
+        </div>
+
+
+
+    }
+}
+
+<style>
+    .btncapnhat {
+    color: #20bf6b !important;
+    text-transform: uppercase;
+    background: #ffffff;
+    margin-left: 10px;
+    border: 4px solid #20bf6b !important;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+
+    .btncapnhat:hover {
+        color: #494949 !important;
+        border-radius: 50px;
+        border-color: #494949 !important;
+        transition: all 0.3s ease 0s;
+    }
+    .title {
+  height: 60px; 
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+}
+</style>
+<script type="text/javascript">
+    $('.minus-btn').on('click', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value > 1) {
+            value = value - 1;
+        } else {
+            value = 1;
+        }
+
+        $input.val(value);
+
+    });
+
+    $('.plus-btn').on('click', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var $input = $this.closest('div').find('input');
+        var value = parseInt($input.val());
+
+        if (value < 100) {
+            value = value + 1;
+        } else {
+            value = 100;
+        }
+
+        $input.val(value);
+    });
+
+    $('.like-btn').on('click', function () {
+        $(this).toggleClass('is-active');
+    });
+</script>
+
+
+
+
+
+
+
