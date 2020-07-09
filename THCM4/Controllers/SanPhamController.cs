@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using THCM4.Controllers;
 using THCM4.Models;
 using System.Net;
+using PagedList;
 
 namespace THCM4.Controllers
 {
@@ -32,7 +33,7 @@ namespace THCM4.Controllers
             return View(sp);
 
         }
-        public ActionResult LoadSanPham(int? MaLoaiSP,int? MaNSX)
+        public ActionResult LoadSanPham(int? MaLoaiSP,int? MaNSX,int? SoTrang)
         {
             if (MaLoaiSP == null||MaNSX==null)
             {
@@ -43,7 +44,13 @@ namespace THCM4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(lstSP);
+            //phan trang
+            int SanPhamPage = 2;
+            int pageHienTai = (SoTrang ?? 1);
+            ViewBag.MaLoaiSP = MaLoaiSP;
+            ViewBag.MaNSX = MaNSX;
+            return View(lstSP.OrderBy(n => n.NgayCapNhat).ToPagedList(pageHienTai, SanPhamPage));
+            //return View(lstSP);
         }
     }
 }

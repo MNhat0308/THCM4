@@ -61,6 +61,12 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -137,9 +143,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuanLySanPhamController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,7 +161,7 @@
     <Compile Include="Models\DonDatHang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\ItemGioHang.cs" />
     <Compile Include="Models\KhachHang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -198,6 +207,58 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminLayout\css\bootstrap.min.css" />
+    <Content Include="Content\AdminLayout\css\font-awesome.css" />
+    <Content Include="Content\AdminLayout\css\font.css" />
+    <Content Include="Content\AdminLayout\css\jqvmap.css" />
+    <Content Include="Content\AdminLayout\css\lightbox.css" />
+    <Content Include="Content\AdminLayout\css\minimal.css" />
+    <Content Include="Content\AdminLayout\css\monthly.css" />
+    <Content Include="Content\AdminLayout\css\morris.css" />
+    <Content Include="Content\AdminLayout\css\style-responsive.css" />
+    <Content Include="Content\AdminLayout\css\style.css" />
+    <Content Include="Content\AdminLayout\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\AdminLayout\images\1.png" />
+    <Content Include="Content\AdminLayout\images\2.png" />
+    <Content Include="Content\AdminLayout\images\3.png" />
+    <Content Include="Content\AdminLayout\images\bg.jpg" />
+    <Content Include="Content\AdminLayout\images\close.png" />
+    <Content Include="Content\AdminLayout\images\g1.jpg" />
+    <Content Include="Content\AdminLayout\images\g2.jpg" />
+    <Content Include="Content\AdminLayout\images\g3.jpg" />
+    <Content Include="Content\AdminLayout\images\g4.jpg" />
+    <Content Include="Content\AdminLayout\images\g5.jpg" />
+    <Content Include="Content\AdminLayout\images\g6.jpg" />
+    <Content Include="Content\AdminLayout\images\g7.jpg" />
+    <Content Include="Content\AdminLayout\images\g8.jpg" />
+    <Content Include="Content\AdminLayout\images\g9.jpg" />
+    <Content Include="Content\AdminLayout\images\mail.png" />
+    <Content Include="Content\AdminLayout\images\minimal.png" />
+    <Content Include="Content\AdminLayout\images\nav-expand.png" />
+    <Content Include="Content\AdminLayout\images\next.png" />
+    <Content Include="Content\AdminLayout\images\pass.png" />
+    <Content Include="Content\AdminLayout\images\prev.png" />
+    <Content Include="Content\AdminLayout\images\search-icon.png" />
+    <Content Include="Content\AdminLayout\js\bootstrap.js" />
+    <Content Include="Content\AdminLayout\js\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="Content\AdminLayout\js\jquery.fileupload.js" />
+    <Content Include="Content\AdminLayout\js\jquery.min.js" />
+    <Content Include="Content\AdminLayout\js\jquery.nicescroll.js" />
+    <Content Include="Content\AdminLayout\js\jquery.scrollTo.js" />
+    <Content Include="Content\AdminLayout\js\jquery.slimscroll.js" />
+    <Content Include="Content\AdminLayout\js\jquery.vmap.asia.js" />
+    <Content Include="Content\AdminLayout\js\jquery.vmap.australia.js" />
+    <Content Include="Content\AdminLayout\js\jquery.vmap.europe.js" />
+    <Content Include="Content\AdminLayout\js\jquery.vmap.js" />
+    <Content Include="Content\AdminLayout\js\jquery.vmap.sampledata.js" />
+    <Content Include="Content\AdminLayout\js\jquery.vmap.world.js" />
+    <Content Include="Content\AdminLayout\js\jquery2.0.3.min.js" />
+    <Content Include="Content\AdminLayout\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Content\AdminLayout\js\monthly.js" />
+    <Content Include="Content\AdminLayout\js\morris.js" />
+    <Content Include="Content\AdminLayout\js\raphael-min.js" />
+    <Content Include="Content\AdminLayout\js\script.js" />
+    <Content Include="Content\AdminLayout\js\scripts.js" />
     <Content Include="Content\CSS1.css" />
     <Content Include="Content\AnhData\dell.jpg" />
     <Content Include="Content\AnhData\ipad-2018-4_1566640220.jpg" />
@@ -273,6 +334,7 @@
     <Content Include="Content\Login\font-awesome.css" />
     <Content Include="Content\Login\style.css" />
     <Content Include="Content\minus.svg" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\plus.svg" />
     <Content Include="Content\twitter-heart.png" />
     <Content Include="favicon.ico" />
@@ -298,6 +360,13 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\AdminLayout\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\AdminLayout\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\AdminLayout\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\AdminLayout\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\AdminLayout\fonts\FontAwesome.otf" />
+    <Content Include="Content\AdminLayout\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\AdminLayout\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -333,6 +402,11 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\ThongBao.cshtml" />
     <Content Include="Views\GioHang\ChinhSuaGioHang.cshtml" />
+    <Content Include="Views\TimKiem\Search.cshtml" />
+    <Content Include="Views\Layout\AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\QuanLySanPham\Index.cshtml" />
+    <Content Include="Views\QuanLySanPham\TaoSP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

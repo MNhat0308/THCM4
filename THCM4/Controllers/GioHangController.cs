@@ -12,12 +12,12 @@ namespace THCM4.Controllers
     {
         WebSite1Entities dt = new WebSite1Entities();
         //lay gio hang
-        public List<GioHang> LayGioHang()
+        public List<ItemGioHang> LayGioHang()
         {
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            List<ItemGioHang> lstGioHang = Session["GioHang"] as List<ItemGioHang>;
             if(lstGioHang==null)
             {
-                lstGioHang  = new List<GioHang>();
+                lstGioHang  = new List<ItemGioHang>();
                 Session["GioHang"] = lstGioHang;
                
             }
@@ -35,9 +35,9 @@ namespace THCM4.Controllers
                 return null;
             }
             //Lay gio hang
-            List<GioHang> lstGioHang = LayGioHang();
+            List<ItemGioHang> lstGioHang = LayGioHang();
             //Truong hop 1:Neu Da Co SP trong gio hang>>>tang SoLuong
-            GioHang spCheck = lstGioHang.SingleOrDefault(n => n.MaSP == MaSP);
+            ItemGioHang spCheck = lstGioHang.SingleOrDefault(n => n.MaSP == MaSP);
             if(spCheck!=null)
             {
                 if(sp.SoLuongTon<spCheck.SoLuong)
@@ -49,7 +49,7 @@ namespace THCM4.Controllers
                 return Redirect(Surl);
             }
            
-            GioHang iteamGH = new GioHang(MaSP);
+            ItemGioHang iteamGH = new ItemGioHang(MaSP);
             if (sp.SoLuongTon < iteamGH.SoLuong)
             {
                 return View("ThongBao");
@@ -60,7 +60,7 @@ namespace THCM4.Controllers
         }
         public double TongSL()
         {
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            List<ItemGioHang> lstGioHang = Session["GioHang"] as List<ItemGioHang>;
             if(lstGioHang==null)
             {
                 return 0;
@@ -70,7 +70,7 @@ namespace THCM4.Controllers
         }
         public decimal TongTien()
         {
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            List<ItemGioHang> lstGioHang = Session["GioHang"] as List<ItemGioHang>;
             if (lstGioHang == null)
             {
                 return 0;
@@ -84,7 +84,7 @@ namespace THCM4.Controllers
         // GET: GioHang
         public ActionResult XemGioHang()
         {
-            List<GioHang> lstGioHang = LayGioHang();
+            List<ItemGioHang> lstGioHang = LayGioHang();
 
             return View(lstGioHang);
         }
@@ -113,8 +113,8 @@ namespace THCM4.Controllers
                 return null;
             }
             //lay list san pham trong gio
-            List<GioHang> lstGioHang = LayGioHang();
-            GioHang spcheck = lstGioHang.SingleOrDefault(n => n.MaSP == MaSP);
+            List<ItemGioHang> lstGioHang = LayGioHang();
+            ItemGioHang spcheck = lstGioHang.SingleOrDefault(n => n.MaSP == MaSP);
             //kiem tra co sp trong list gio hang ko
             if(spcheck==null)
             {
@@ -124,7 +124,7 @@ namespace THCM4.Controllers
             return View(spcheck);
         }
         [HttpPost]
-        public ActionResult CapNhatGioHang(GioHang itemGH)
+        public ActionResult CapNhatGioHang(ItemGioHang itemGH)
         {   
             //kiem tra so luon ton
             SanPham spcheck = dt.SanPham.Single(n => n.MaSP == itemGH.MaSP);
@@ -132,9 +132,9 @@ namespace THCM4.Controllers
             {
                 return View("ThongBao");
             }
-            List<GioHang> lstGH = LayGioHang();
+            List<ItemGioHang> lstGH = LayGioHang();
             //gan sp update vao so luong moi
-            GioHang updateGH = lstGH.Find(n => n.MaSP == itemGH.MaSP);
+            ItemGioHang updateGH = lstGH.Find(n => n.MaSP == itemGH.MaSP);
             updateGH.SoLuong = itemGH.SoLuong;
             updateGH.ThanhTien = itemGH.SoLuong * updateGH.DonGia;
             return RedirectToAction("XemGioHang");
@@ -153,14 +153,68 @@ namespace THCM4.Controllers
                 return null;
             }
             //lay list san pham trong gio
-            List<GioHang> lstGioHang = LayGioHang();
-            GioHang spcheck = lstGioHang.SingleOrDefault(n => n.MaSP == MaSP);
+            List<ItemGioHang> lstGioHang = LayGioHang();
+            ItemGioHang spcheck = lstGioHang.SingleOrDefault(n => n.MaSP == MaSP);
             //kiem tra co sp trong list gio hang ko
             if (spcheck == null)
             {
                 return RedirectToAction("Index", "Home");
             }
             lstGioHang.Remove(spcheck);
+            return RedirectToAction("XemGioHang");
+        }
+        public ActionResult DatHang(KhachHang kh)
+        {
+            if (Session["GioHang"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            KhachHang Khach = new KhachHang();
+            if(Session["TaiKhoan"]==null)
+            {
+                //khach chua dang ky
+                Khach = kh;
+                dt.KhachHang.Add(Khach);
+                dt.SaveChanges();
+            }
+            else
+            {
+                // khach da dang ky la thanh vien
+                ThanhVien tv =  Session["TaiKhoan"] as ThanhVien;
+                Khach.HoTenKH = tv.HoTen;
+                Khach.SdtKH = tv.Sdt;
+                Khach.EmailKH = tv.Email;
+                Khach.DiaChiKH = tv.DiaChi;
+                Khach.MaTV = tv.MaTV;
+                dt.KhachHang.Add(Khach);
+                dt.SaveChanges();
+            }
+            //Them Don Hang
+            DonDatHang ddh = new DonDatHang();
+            ddh.MaKH = Khach.MaKH; 
+            ddh.NgayDat = DateTime.Now;
+            ddh.TinhTrangGiaoHang = false;
+            ddh.UuDai = 0;
+            ddh.Dagiao = false;
+            dt.DonDatHang.Add(ddh);
+            dt.SaveChanges();
+            //chi tiet
+            List<ItemGioHang> lstGioHang = LayGioHang();
+            foreach (var item in lstGioHang)
+            {
+                CTDH ctdh = new CTDH();
+                ctdh.MaDDH = ddh.MaDDH;
+                ctdh.MaSP = item.MaSP;
+                ctdh.TenSP = item.TenSP;
+                ctdh.Soluong = item.SoLuong;
+                ctdh.Dongia = item.DonGia;
+                dt.CTDH.Add(ctdh);
+                
+            }
+            dt.SaveChanges();
+            Session["GioHang"] = null;
+
+
             return RedirectToAction("XemGioHang");
         }
 

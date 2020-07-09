@@ -1,6 +1,6 @@
 ﻿@using THCM4.Models
 
-@model List<GioHang>
+@model List<ItemGioHang>
 
 @{
     ViewBag.Title = "XemGioHang";
@@ -16,39 +16,7 @@
 else
 {
 
-    @*<table class="col-md-8  ">
-            <tr>
-                <td>Tên Sản Phẩm</td>
-                <td>Số Lượng</td>
-                <td> Hình Ảnh</td>
-                <td>Đơn Giá</td>
-                <td>Thành Tiền</td>
 
-            </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-
-                    <td>@item.TenSP </td>
-                    <td>@item.SoLuong</td>
-                    <td>
-                        <img src="@Url.Content("~/Content/AnhData/"+item.HinhAnh)" alt="asdas" width="50" height="50">
-                    </td>
-                    <td>@item.DonGia.ToString("#,##") VND</td>
-                    <td>@item.ThanhTien.ToString("#,##") VND </td>
-                    <td>
-                        <a>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP })</a>
-                        <a> @Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP })  </a>
-                    </td>
-
-
-                </tr>
-            }
-
-
-
-
-        </table>*@
     <link rel="stylesheet" href="~/Content/CSS1.css" media="screen" title="no title" charset="utf-8">
     <div class="title">
         Giỏ Hàng
@@ -116,14 +84,84 @@ else
         </div>
 
     }
+    using (Html.BeginForm("DatHang", "GioHang"))
+    {
+        if (Session["TaiKhoan"] == null)
+        {
+
+
+            <div class="col-md-9 register-top-grid">
+
+                <div>
+                    <span>Họ Và Tên</span>
+                    <input type="text" name="HoTenKH" value="" required="" />
+                    @*@Html.TextBox("HoTenKH")*@
+                </div>
+                <div>
+                    <span>Địa Chỉ</span>
+                    <input type="text" name="DiaChiKH" value="" required="" />
+                    @*@Html.TextBox("DiaChiKH")*@
+                </div>
+                <div>
+                    <span>Email </span>
+                    <input class="register-bottom-grid" type="text" name="EmailKH" value="" required="" />
+                    @*@Html.TextBox("EmailKH")*@
+                </div>
+                <div>
+                    <span>Số Điện Thoại </span>
+                    <input type="text" name="SdtKH" value="" required="" />
+                    @*@Html.TextBox("SdtKH")*@
+                </div>
+
+            </div>
+        }
+        <div class="col-md-9" style="text-align:right;padding-right:80px">
+            <input type="submit" name="name" value="Đặt Hàng" class="btncapnhat" style="padding-top:5px" />
+
+            <br />
+            <br />
+            @Html.ActionLink("Mua Tiếp", "Index", "Home", null, new { @class = "btncapnhat" })
+
+        </div>
+    }
 }
-<div class="col-md-9" style="text-align:right;padding-right:80px">
-    <input type="submit" name="name" value="Đặt Hàng" />
-    <br />    
-</div>
 
-<div class="col-md-9" style="text-align:right;padding-right:80px">
-    <input type="submit" name="name" value=" Mua Tiếp" />
-</div>
 
-    
+
+
+
+
+
+<style>
+    .btncapnhat {
+        color: #20bf6b !important;
+        /*text-transform: uppercase;*/
+        background: #ffffff;
+        margin-left: 10px;
+        padding-top: 15px;
+        width: 100px;
+        text-align: center;
+        height: 50px;
+        border: 4px solid #20bf6b !important;
+        border-radius: 5px;
+        display: inline-block;
+        transition: all 0.3s ease 0s;
+    }
+
+        .btncapnhat:hover {
+            color: #494949 !important;
+            border-radius: 15px;
+            border-color: #494949 !important;
+            transition: all 0.3s ease 0s;
+        }
+
+    .title {
+        height: 60px;
+        padding: 20px 30px;
+        color: #5E6977;
+        font-size: 18px;
+        font-weight: 400;
+    }
+</style>
+
+

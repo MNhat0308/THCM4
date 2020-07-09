@@ -1,15 +1,14 @@
 ﻿@using THCM4.Models;
-
-@model GioHang
+@model  ItemGioHang
 
 
 @{
-    ViewBag.Title = "ChinhSuaGioHang";
+    ViewBag.Title = "ChinhSuaItemGioHang";
     Layout = "~/Views/Layout/ProductLayout.cshtml";
 }
 
 @{
-    List<GioHang> lstGioHang = ViewBag.TB as List<GioHang>;
+    List<ItemGioHang> lstItemGioHang = ViewBag.TB as List<ItemGioHang>;
 }
 
 @*<table class="col-md-8  ">
@@ -96,7 +95,7 @@
 
 </div>
 
-@foreach (var item in lstGioHang)
+@foreach (var item in lstItemGioHang)
 {
     if (Model.MaSP == item.MaSP)
     {

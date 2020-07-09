@@ -5,7 +5,7 @@ using System.Web;
 
 namespace THCM4.Models
 {
-    public class GioHang
+    public class ItemGioHang
     {
         public int MaSP { get; set; }
         public string TenSP { get; set; }
@@ -14,7 +14,7 @@ namespace THCM4.Models
         public decimal ThanhTien { get; set; }
         public string HinhAnh { get; set; }
 
-        public GioHang(int IMaSP)
+        public ItemGioHang(int IMaSP)
         {
             using (WebSite1Entities dt = new WebSite1Entities())
             {
@@ -29,7 +29,7 @@ namespace THCM4.Models
 
             }
         }
-        public  GioHang(int IMaSP,int sl)
+        public  ItemGioHang(int IMaSP,int sl)
         {
             using (WebSite1Entities dt=new WebSite1Entities())
             {
@@ -43,7 +43,7 @@ namespace THCM4.Models
 
             }
         }
-        public GioHang()
+        public ItemGioHang()
         {
 
         }

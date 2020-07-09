@@ -1,0 +1,34 @@
+﻿@using THCM4.Models;
+@model IEnumerable<SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    //tao webgrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHeader",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "girdAltRow",
+    columns: grid.Columns(
+        grid.Column("MaSP", "Mã sản phẩm"),
+        grid.Column("TenSP", "tên sản phẩm"),
+        grid.Column("NgayCapNhat", "Mô Tả",format:p=>@Html.Raw(p.NgayCapNhat)),
+        grid.Column("DonGia", "Đơn Giá",format:p=>@Html.Raw(p.DonGia.ToString("#,##")))
+        ))
+<style>
+   .gridTable{
+       border:1px dotted ;
+       width:100%;
+       padding:15px;
+       height:100px;
+          
+   }
+</style>
+
+
+
