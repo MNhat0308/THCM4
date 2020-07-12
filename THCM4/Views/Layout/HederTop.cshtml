@@ -1,5 +1,17 @@
 ﻿@using THCM4.Models;
 
+<style>
+    .Hoten {
+        color: white;
+        margin-top: 8px;
+    }
+    .DangXuat {
+        color: white;
+        margin-right: 31px;
+        margin-left: 47px;
+    }
+
+</style>
 
     <div class="header-top">
         <div class="container">
@@ -21,12 +33,12 @@
 
                         ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
 
-                        <li class="lock">@tv.HoTen</li>
-                        @Html.ActionLink("Đăng Xuất", "DangXuat", "Home")
+                        <li class="Hoten" >@tv.HoTen</li>
+                        @Html.ActionLink("Đăng Xuất", "DangXuat", "Home",new { @class="DangXuat"})
                     }
                     else
                     {
-                        <li><a id="DN" class="lock">Đăng Nhập</a></li>
+                        <li><a id="DN" >Đăng Nhập</a></li>
                         <li><a class="lock" href="@Url.Action("DangKy", "Home")">Đăng Ký</a></li>
                         }
 

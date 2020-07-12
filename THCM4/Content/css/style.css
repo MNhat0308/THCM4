@@ -269,6 +269,7 @@ height: 35px;
   right: 0;
  } 
 .banner-text{
+  background-image:url(~/Content//AnhData/MB2020.jpg);
  padding:10em 0 1em;
  color:#fff;
    width: 50%;

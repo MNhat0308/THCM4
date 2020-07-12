@@ -1,0 +1,30 @@
+﻿@using THCM4.Models;
+@model IEnumerable<LoaiTV>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+<h4 style="text-align:center">Danh Sách Phân Quyền</h4>
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHeader",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "girdAltRow",
+    columns: grid.Columns(
+        grid.Column("MaLoaiTV", "Mã Loại Thành Viên"),
+        grid.Column("TenLoai", "Tên Loại"),
+        grid.Column(format: p => @Html.ActionLink("Sửa", "PhanQuyen", new { id = p.MaLoaiTV }))
+        ))
+<style>
+    .gridTable {
+        border: 1px dotted;
+        width: 100%;
+        padding: 15px;
+        height: 100px;
+    }
+</style>
+
+

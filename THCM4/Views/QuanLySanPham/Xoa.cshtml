@@ -1,10 +1,23 @@
-﻿@model THCM4.Models.SanPham
+﻿@*@{
+        ViewBag.Title = "Xoa";
+        Layout = "~/Views/Layout/AdminLayout.cshtml";
+    }
+
+    <h2>Xoa</h2>*@
+
+@*@{
+        ViewBag.Title = "ChinhSua";
+        Layout = "~/Views/Layout/AdminLayout.cshtml";
+    }
+
+    <h2>ChinhSua</h2>*@
+@model THCM4.Models.SanPham
 
 @{
-    ViewBag.Title = "TaoSP";
+    ViewBag.Title = "Xoa";
     Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
-    
+
 <script src="https://cdn.tiny.cloud/1/fr4xidqdnmvvmnoyux2xxboe2a1pgpzjmnp85znu0grjsyas/tinymce/5/tinymce.min.js" referrerpolicy="origin">
 
 </script>
@@ -21,18 +34,15 @@
 </script>
 
 
-@using (Html.BeginForm("TaoSP", "QuanLySanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Xoa", "QuanLySanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.Hidden("MaSP", Model.MaSP)
     <div class="form-horizontal">
-        <h4 style="text-align:center">Tạo Sản Phẩm</h4>
+        <h4 style="text-align:center">Xoá Sản Phẩm</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <span>@Html.Raw(ViewBag.Upanh as String)
-        <br />
-                @Html.Raw(ViewBag.UpAnhLoi as string)
-        </span>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.TenSP, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -53,22 +63,29 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NgayCapNhat, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6">
-                <input type="date" name="NgayCapNhat" value="" class="control-label " />
+                @if (Model.NgayCapNhat != null)
+                {
+
+                    <input type="date" name="NgayCapNhat" value="@Model.NgayCapNhat.Value.ToString()" class="control-label " />
+
+                }
+
             </div>
         </div>
         @*Tao the input hinh anh  *@
         <div class="form-group">
             @Html.LabelFor(model => model.CauHinh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6">
-                <textarea name="CauHinh"></textarea>
-                
+                <textarea name="CauHinh">@Model.CauHinh</textarea>
+                @Html.ValidationMessageFor(model => model.CauHinh, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6">
-                <textarea  name="Mota"></textarea>
+                <textarea name="Mota">@Model.Mota</textarea>
                 @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -129,7 +146,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Xoá Sản Phẩm" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -138,3 +155,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+

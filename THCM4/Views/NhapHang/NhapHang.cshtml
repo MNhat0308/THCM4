@@ -1,0 +1,91 @@
+﻿@using THCM4.Models;
+
+
+@model  PhieuNhap
+
+@{
+    ViewBag.Title = "NhapHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+@{
+    IEnumerable<NCC> lstNCC = ViewBag.MaNCC as IEnumerable<NCC>;
+}
+
+
+
+@using (Html.BeginForm())
+{
+    <div class="col-md-12">
+        <div class="col-md-2" style="padding-top:3px">
+            Nhà Cung Cấp:
+        </div>
+        <div class="col-md-5">
+
+            <select name="MaNCC" style="width:174px">
+            @*@foreach (var item in lstNCC)
+            {
+                <option value="@item.MaNCC"> @item.TenNCC</option>
+            }*@
+        </select>
+        </div>
+    </div>
+    <div class="col-md-12" style="padding-top:10px">
+        <div class="col-md-2" style="padding-top:3px">
+            Ngày Nhập:
+        </div>
+        <div class="col-md-5">
+            <input type="date" name="NgayNhap" value="" />
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <table data-id="" class="CT  col-md-10" style="margin-top:20px;margin-left:29px">
+        @{
+            IEnumerable<SanPham> lstSP = ViewBag.lstsp as IEnumerable<SanPham>;
+        }
+        <tr>
+            <td>Tên Sản Phẩm</td>
+            <td>Số Lượng</td>
+            <td>Đơn Giá</td>
+        </tr>
+        <tr class="beforeAppend">
+            <td>
+                <select class="DDLSanPham" name="MaNCC">
+                    @*@foreach (var item in lstSP)
+                    {
+                        <option value="@item.MaSP">@item.TenSP</option>
+                    }*@
+
+                </select>
+            </td>
+            <td>
+                <input type="text" name="" class="txtSL" value="0" />
+            </td>
+            <td>
+                <input type="text" class="txtDG" name="name" value="0" />
+            </td>
+            <td>
+                <input type="submit" class="btnXoa" name="name" value="-" id="BtnXoa" />
+            </td>
+        </tr>
+    </table>
+    <div class="clearfix"></div>
+    <div class="col-md-12" style="margin-top:30px">
+        <input type="submit" name="name" value="+" id="BtnThem" />
+        <br />
+
+        <input type="submit" name="name" value="Thêm Sản Phẩm" />
+    </div>
+
+}
+<script>
+    $("#BtnThem").click(function () {
+        var tdNoiDung = $(".beforeAppend").html();
+        var trNoiDung = "<tr class=\"beforeAppend\" data-id=\"" + "" + "\">" + tdNoiDung + "</tr>";
+        $(".CT").append(trNoiDung);
+        });
+
+
+</script>
+
+

@@ -37,5 +37,7 @@ namespace THCM4.Models
         public virtual DbSet<SanPham> SanPham { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ThanhVien> ThanhVien { get; set; }
+        public virtual DbSet<LoaiTV_Quyen> LoaiTV_Quyen { get; set; }
+        public virtual DbSet<Quyen> Quyen { get; set; }
     }
 }

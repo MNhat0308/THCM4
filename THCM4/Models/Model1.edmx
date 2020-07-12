@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebSite1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WebSite1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CTDH">
           <Key>
             <PropertyRef Name="MaDDH" />
@@ -65,6 +65,15 @@
           <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
           <Property Name="UuDai" Type="int" />
         </EntityType>
+        <EntityType Name="LoaiTV_Quyen">
+          <Key>
+            <PropertyRef Name="MaLoaiTV" />
+            <PropertyRef Name="MaQuyen" />
+          </Key>
+          <Property Name="MaLoaiTV" Type="int" Nullable="false" />
+          <Property Name="MaQuyen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="NCC">
           <Key>
             <PropertyRef Name="MaNCC" />
@@ -92,6 +101,13 @@
           <Property Name="MaNCC" Type="int" />
           <Property Name="NgayNhap" Type="date" />
           <Property Name="DaXoa" Type="bit" />
+        </EntityType>
+        <EntityType Name="Quyen">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+          </Key>
+          <Property Name="MaQuyen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenQuyen" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -266,6 +282,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LoaiTV_Quyen_LoaiTV">
+          <End Role="LoaiTV" Type="Self.LoaiTV" Multiplicity="1" />
+          <End Role="LoaiTV_Quyen" Type="Self.LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiTV">
+              <PropertyRef Name="MaLoaiTV" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaLoaiTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiTV_Quyen_Quyen">
+          <End Role="Quyen" Type="Self.Quyen" Multiplicity="1" />
+          <End Role="LoaiTV_Quyen" Type="Self.LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quyen">
+              <PropertyRef Name="MaQuyen" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaQuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WebSite1ModelStoreContainer">
           <EntitySet Name="CTDH" EntityType="Self.CTDH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTPN" EntityType="Self.CTPN" Schema="dbo" store:Type="Tables" />
@@ -273,9 +313,11 @@
           <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiTV" EntityType="Self.LoaiTV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiTV_Quyen" EntityType="Self.LoaiTV_Quyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NCC" EntityType="Self.NCC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NSX" EntityType="Self.NSX" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuNhap" EntityType="Self.PhieuNhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quyen" EntityType="Self.Quyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanhVien" EntityType="Self.ThanhVien" Schema="dbo" store:Type="Tables" />
@@ -323,9 +365,16 @@
             <End Role="LoaiTV" EntitySet="LoaiTV" />
             <End Role="ThanhVien" EntitySet="ThanhVien" />
           </AssociationSet>
+          <AssociationSet Name="FK_LoaiTV_Quyen_LoaiTV" Association="Self.FK_LoaiTV_Quyen_LoaiTV">
+            <End Role="LoaiTV" EntitySet="LoaiTV" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiTV_Quyen_Quyen" Association="Self.FK_LoaiTV_Quyen_Quyen">
+            <End Role="Quyen" EntitySet="Quyen" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebSite1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -398,6 +447,7 @@
           <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UuDai" Type="Int32" />
           <NavigationProperty Name="ThanhVien" Relationship="Self.FK__ThanhVien__MaLoa__4BAC3F29" FromRole="LoaiTV" ToRole="ThanhVien" />
+          <NavigationProperty Name="LoaiTV_Quyen" Relationship="WebSite1Model.FK_LoaiTV_Quyen_LoaiTV" FromRole="LoaiTV" ToRole="LoaiTV_Quyen" />
         </EntityType>
         <EntityType Name="NCC">
           <Key>
@@ -669,7 +719,60 @@
             <End Role="NSX" EntitySet="NSX" />
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
+          <EntitySet Name="LoaiTV_Quyen" EntityType="WebSite1Model.LoaiTV_Quyen" />
+          <EntitySet Name="Quyen" EntityType="WebSite1Model.Quyen" />
+          <AssociationSet Name="FK_LoaiTV_Quyen_LoaiTV" Association="WebSite1Model.FK_LoaiTV_Quyen_LoaiTV">
+            <End Role="LoaiTV" EntitySet="LoaiTV" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiTV_Quyen_Quyen" Association="WebSite1Model.FK_LoaiTV_Quyen_Quyen">
+            <End Role="Quyen" EntitySet="Quyen" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="LoaiTV_Quyen">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+            <PropertyRef Name="MaLoaiTV" />
+          </Key>
+          <Property Name="MaQuyen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoaiTV" Type="Int32" Nullable="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiTV" Relationship="WebSite1Model.FK_LoaiTV_Quyen_LoaiTV" FromRole="LoaiTV_Quyen" ToRole="LoaiTV" />
+          <NavigationProperty Name="Quyen" Relationship="WebSite1Model.FK_LoaiTV_Quyen_Quyen" FromRole="LoaiTV_Quyen" ToRole="Quyen" />
+        </EntityType>
+        <EntityType Name="Quyen">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+          </Key>
+          <Property Name="MaQuyen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenQuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiTV_Quyen" Relationship="WebSite1Model.FK_LoaiTV_Quyen_Quyen" FromRole="Quyen" ToRole="LoaiTV_Quyen" />
+        </EntityType>
+        <Association Name="FK_LoaiTV_Quyen_LoaiTV">
+          <End Type="WebSite1Model.LoaiTV" Role="LoaiTV" Multiplicity="1" />
+          <End Type="WebSite1Model.LoaiTV_Quyen" Role="LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiTV">
+              <PropertyRef Name="MaLoaiTV" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaLoaiTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiTV_Quyen_Quyen">
+          <End Type="WebSite1Model.Quyen" Role="Quyen" Multiplicity="1" />
+          <End Type="WebSite1Model.LoaiTV_Quyen" Role="LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quyen">
+              <PropertyRef Name="MaQuyen" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaQuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -812,6 +915,23 @@
                 <ScalarProperty Name="Sdt" ColumnName="Sdt" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiTV_Quyen">
+            <EntityTypeMapping TypeName="WebSite1Model.LoaiTV_Quyen">
+              <MappingFragment StoreEntitySet="LoaiTV_Quyen">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+                <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quyen">
+            <EntityTypeMapping TypeName="WebSite1Model.Quyen">
+              <MappingFragment StoreEntitySet="Quyen">
+                <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
+                <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

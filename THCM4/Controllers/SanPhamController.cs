@@ -10,6 +10,7 @@ using PagedList;
 
 namespace THCM4.Controllers
 {
+    
     public class SanPhamController : Controller
     {
         // GET: SanPham

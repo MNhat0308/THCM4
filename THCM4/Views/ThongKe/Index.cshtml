@@ -1,0 +1,77 @@
+﻿@using THCM4.Models
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<style>
+    .market-updates{
+        display:none;
+    }
+</style>
+    <div class="market-updates1">
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-2">
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-eye"> </i>
+                </div>
+                <div class="col-md-8 market-update-left" style="width:unset">
+                    <h4>Số Lượng Truy Cập</h4>
+                    <h3>@ViewBag.SoNguoiTruyCap</h3>
+                    <p>  </p>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <br /> <br />
+       
+        </div>
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-1">
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-eye"> </i>
+                </div>
+                <div class="col-md-8 market-update-left" style="width:unset">
+                    <h4>Số Lượng Online</h4>
+                    <h3>@ViewBag.SoNguoiOnline</h3>
+
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-3">
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-usd"></i>
+                </div>
+                <div class="col-md-8 market-update-left" style="width:unset">
+                    <h4>Tổng Doanh Thu</h4>
+                    <h3>@ViewBag.TongDoanhThu Milion</h3>
+                   
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-4">
+                <div class="col-md-4 market-update-right">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-8 market-update-left"style="width:unset">
+                    <h4>Đơn Đặt Hàng</h4>
+                    <h3>@ViewBag.DH</h3>
+                    
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+@*<div>
+    <input type="text" name="txt1" value="" id="txt1" />
+    <input type="text" name="txt2" value="" />
+    <a href="@Url.Action("TongDoanhThuTheoNăm","ThongKe",new {Thang=Model.NgayDat.Value.Month,Nam=Model.NgayDat.Value.Year })">asd</a>
+</div>*@
+

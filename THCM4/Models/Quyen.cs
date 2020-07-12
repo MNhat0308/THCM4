@@ -12,21 +12,17 @@ namespace THCM4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LoaiTV
+    public partial class Quyen
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoaiTV()
+        public Quyen()
         {
-            this.ThanhVien = new HashSet<ThanhVien>();
             this.LoaiTV_Quyen = new HashSet<LoaiTV_Quyen>();
         }
     
-        public int MaLoaiTV { get; set; }
-        public string TenLoai { get; set; }
-        public Nullable<int> UuDai { get; set; }
+        public string MaQuyen { get; set; }
+        public string TenQuyen { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThanhVien> ThanhVien { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoaiTV_Quyen> LoaiTV_Quyen { get; set; }
     }
