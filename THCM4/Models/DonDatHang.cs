@@ -27,6 +27,7 @@ namespace THCM4.Models
         public Nullable<int> UuDai { get; set; }
         public Nullable<bool> TinhTrangGiaoHang { get; set; }
         public Nullable<bool> Dagiao { get; set; }
+        public Nullable<bool> DaThanhToan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDH> CTDH { get; set; }

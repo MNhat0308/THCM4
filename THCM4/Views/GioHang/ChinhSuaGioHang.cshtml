@@ -11,56 +11,6 @@
     List<ItemGioHang> lstItemGioHang = ViewBag.TB as List<ItemGioHang>;
 }
 
-@*<table class="col-md-8  ">
-        <tr>
-            <td>Tên Sản Phẩm</td>
-            <td>Số Lượng</td>
-            <td>Hình Ảnh</td>
-            <td>Đơn Giá</td>
-            <td>Thành Tiền</td>
-            <td></td>
-
-        </tr>
-        @foreach (var item in lstGioHang)
-        {
-            if (Model.MaSP == item.MaSP)
-            {
-                using (Html.BeginForm("CapNhatGioHang", "GioHang"))
-                {
-                    <tr>
-                        @Html.Hidden("MaSP", item.MaSP)
-                        <td>@item.TenSP </td>
-                        <td>@Html.TextBox("SoLuong", item.SoLuong)</td>
-                        <td>
-
-                            <img src="@Url.Content("~/Content/AnhData/"+item.HinhAnh)" width="50" height="50">
-                        </td>
-
-                        <td>@item.DonGia.ToString("#,##") VND</td>
-                        <td>@item.ThanhTien.ToString("#,##") VND </td>
-                        <td> <input type="submit" name="name" value="Cập Nhật" /> </td>
-
-                    </tr>
-                }
-            }
-            else
-            {
-                <tr>
-
-                    <td>@item.TenSP </td>
-                    <td>@item.SoLuong</td>
-                    <td>@item.DonGia.ToString("#,##") VND</td>
-                    <td>@item.ThanhTien.ToString("#,##") VND </td>
-                    <td>
-                        <a>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP })</a>
-                        <a> @Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP })  </a>
-                    </td>
-
-                </tr>
-            }
-
-        }
-    </table>*@
 
 <link rel="stylesheet" href="~/Content/CSS1.css" media="screen" title="no title" charset="utf-8">
 <div class="title">

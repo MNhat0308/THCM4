@@ -1,0 +1,35 @@
+﻿@using THCM4.Models;
+@model IEnumerable<DonDatHang>
+@{
+    ViewBag.Title = "ChuaThanhToan";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+<div>
+    <h3 style="text-align:center;color:darkcyan">Danh Sách Chưa Thanh Toán</h3>
+</div>
+@grid.GetHtml(
+      tableStyle: "gridTable",
+      headerStyle: "gridHeader",
+      footerStyle: "gridFooter",
+      rowStyle: "gridRow",
+      alternatingRowStyle: "girdAltRow",
+      columns: grid.Columns(
+          grid.Column("MaDDH", "Mã Đơn Đặt Hàng"),
+          grid.Column("MaKH", "Mã Khách Hàng"),
+          grid.Column("NgayDat", "Ngày Đặt ", format: p => @Html.Raw(p.NgayDat)),
+          grid.Column("NgayGiao", "Ngày Giao", format: p => @Html.Raw(p.NgayGiao)),
+          grid.Column("DaGiao", "Tình Trạng Giao Hàng"),
+          grid.Column("DaThanhToan", "Tình Trạng Thanh Toán"),
+          grid.Column(format: p => @Html.ActionLink("Duyệt Đơn Hàng", "DuyetDonHang", new { id = p.MaDDH }, new { @class = "btn btn-success" }))
+          //grid.Column(format: p => @Html.ActionLink("Xoá", "Xoa", new { id = p.MaSP }, new { @class = "btn btn-danger" }))
+          ))
+<style>
+    .gridTable {
+        border: 1px dotted;
+        width: 100%;
+        padding: 10px;
+        height: 100px;
+    }
+</style>
+

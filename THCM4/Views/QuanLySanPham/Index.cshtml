@@ -7,29 +7,36 @@
     //tao webgrid
     WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
 }
-    @Html.ActionLink("Thêm","TaoSP")
-    @grid.GetHtml(
-        tableStyle: "gridTable",
-        headerStyle: "gridHeader",
-        footerStyle: "gridFooter",
-        rowStyle: "gridRow",
-        alternatingRowStyle: "girdAltRow",
-        columns: grid.Columns(
-            grid.Column("MaSP", "Mã sản phẩm"),
-            grid.Column("TenSP", "tên sản phẩm"),
-            grid.Column("NgayCapNhat", "Ngày Cập Nhật",format:p=>@Html.Raw(p.NgayCapNhat)),
-            grid.Column(format:p=> @Html.ActionLink("Sửa","ChinhSua",new { id=p.MaSP})),
-            grid.Column(format:p=> @Html.ActionLink("Xoá","Xoa",new { id=p.MaSP}))
-            ))
-    <style>
-       .gridTable{
-           border:1px dotted ;
-           width:100%;
-           padding:15px;
-           height:100px;
-          
-       }
-    </style>
+<div>
+    <h3 style="text-align:center;color:darkcyan">Quản Lý Sản Phẩm</h3>
+</div>
+@Html.ActionLink("Thêm", "TaoSP", null, new { @class = "btn btn-primary" })
+
+<br />
+<br />
+
+
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHeader",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "girdAltRow",
+    columns: grid.Columns(
+        grid.Column("MaSP", "Mã sản phẩm"),
+        grid.Column("TenSP", "tên sản phẩm"),
+        grid.Column("NgayCapNhat", "Ngày Cập Nhật", format: p => @Html.Raw(p.NgayCapNhat)),
+        grid.Column(format: p => @Html.ActionLink("Sửa", "ChinhSua", new { id = p.MaSP }, new { @class = "btn btn-success" })),
+        grid.Column(format: p => @Html.ActionLink("Xoá", "Xoa", new { id = p.MaSP }, new { @class = "btn btn-danger" }))
+        ))
+<style>
+    .gridTable {
+        border: 1px dotted;
+        width: 100%;
+        padding: 15px;
+        height: 100px;
+    }
+</style>
 
 
 

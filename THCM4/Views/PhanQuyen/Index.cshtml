@@ -6,7 +6,7 @@
     WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
 }
 
-<h4 style="text-align:center">Danh Sách Phân Quyền</h4>
+<h4 style="text-align:center;margin-bottom:20px;color:red">Danh Sách Phân Quyền</h4>
 @grid.GetHtml(
     tableStyle: "gridTable",
     headerStyle: "gridHeader",
@@ -16,15 +16,34 @@
     columns: grid.Columns(
         grid.Column("MaLoaiTV", "Mã Loại Thành Viên"),
         grid.Column("TenLoai", "Tên Loại"),
-        grid.Column(format: p => @Html.ActionLink("Sửa", "PhanQuyen", new { id = p.MaLoaiTV }))
+        grid.Column(format: p => @Html.ActionLink("Sửa", "PhanQuyen", new { id = p.MaLoaiTV },new { @class ="btn btn-success" }))
         ))
 <style>
     .gridTable {
-        border: 1px dotted;
+        border-collapse: collapse;
+           border-top:1px solid #00ff21;
+           
         width: 100%;
         padding: 15px;
         height: 100px;
     }
+    .gridRow{
+         border-top:1px solid #00ff21;
+         border-bottom:1px solid #00ff21;
+         margin:10px;
+         padding:10px 0px 10px 0px;
+         
+             
+    cursor:pointer;
+    }
+    .gridHeader{
+         text-align:center;
+    cursor:pointer;
+    }
+    .girdAltRow{
+        border-bottom:1px solid #00ff21;
+    }
+   
 </style>
 
 

@@ -37,6 +37,7 @@
           <Property Name="UuDai" Type="int" />
           <Property Name="TinhTrangGiaoHang" Type="bit" />
           <Property Name="Dagiao" Type="bit" />
+          <Property Name="DaThanhToan" Type="bit" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -416,6 +417,7 @@
           <Property Name="Dagiao" Type="Boolean" />
           <NavigationProperty Name="CTDH" Relationship="Self.FK__CTDH__MaDDH__797309D9" FromRole="DonDatHang" ToRole="CTDH" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK__DonDatHang__MaKH__787EE5A0" FromRole="DonDatHang" ToRole="KhachHang" />
+          <Property Name="DaThanhToan" Type="Boolean" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -803,6 +805,7 @@
           <EntitySetMapping Name="DonDatHang">
             <EntityTypeMapping TypeName="WebSite1Model.DonDatHang">
               <MappingFragment StoreEntitySet="DonDatHang">
+                <ScalarProperty Name="DaThanhToan" ColumnName="DaThanhToan" />
                 <ScalarProperty Name="MaDDH" ColumnName="MaDDH" />
                 <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
                 <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />

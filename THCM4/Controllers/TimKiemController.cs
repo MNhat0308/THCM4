@@ -12,7 +12,6 @@ namespace THCM4.Controllers
     {
         WebSite1Entities dt = new WebSite1Entities();
         [HttpGet]
-        // GET: TimKiem
         public ActionResult Search(string stukhoa,int? page)
         {
             if(Request.HttpMethod!="GET")
@@ -23,14 +22,26 @@ namespace THCM4.Controllers
             int SoTrang = (page ?? 1);
 
             var lstSp = dt.SanPham.Where(n => n.TenSP.Contains(stukhoa));
-            ViewBag.TuKhoa = stukhoa;
+            ViewBag.tukhoa = stukhoa;
             return View(lstSp.OrderBy(n=>n.TenSP).ToPagedList(SoTrang,SanPhamTrang));
         }
         [HttpPost]
-        public ActionResult LayKetQuaTimKiem(string tukhoa)
+        //public ActionResult LayKetQuaTimKiem(string tukhoa)
+        //{
+        //    return RedirectToAction("Search", new { @stukhoa = tukhoa });
+        //}
+        public ActionResult Search(string stukhoa, int? page,FormCollection f)
         {
-            return RedirectToAction("Search",new { @stukhoa=tukhoa});
-        }
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+            int SanPhamTrang = 2;
+            int SoTrang = (page ?? 1);
 
+            var lstSp = dt.SanPham.Where(n => n.TenSP.Contains(stukhoa));
+            ViewBag.tukhoa = stukhoa;
+            return View(lstSp.OrderBy(n => n.TenSP).ToPagedList(SoTrang, SanPhamTrang));
+        }
     }
 }

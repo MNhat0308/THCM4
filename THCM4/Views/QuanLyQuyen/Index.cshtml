@@ -1,0 +1,39 @@
+﻿@using THCM4.Models;
+@model IEnumerable<Quyen>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+<div>
+    <h3 style="text-align:center;color:darkcyan">Quản Lý Quyền</h3>
+</div>
+@Html.ActionLink("Thêm", "TaoMoi", null, new { @class = "btn btn-primary" })
+<br />
+<br />
+
+
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHeader",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "girdAltRow",
+    columns: grid.Columns(
+        grid.Column("MaQuyen", "Mã Quyền"),
+        grid.Column("TenQuyen", "Tên Quyền"),
+        grid.Column(format: p => @Html.ActionLink("Sửa", "ChinhSua", new { Ma = p.MaQuyen }, new { @class = "btn btn-success" })),
+        grid.Column(format: p => @Html.ActionLink("Xoá", "Xoa", new { Ma = p.MaQuyen }, new { @class = "btn btn-danger" }))
+        ))
+<style>
+    .gridTable {
+        border: 1px dotted;
+        width: 100%;
+        padding: 15px;
+        height: 100px;
+    }
+</style>
+
+

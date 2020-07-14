@@ -16,13 +16,10 @@
     <div class="header-top">
         <div class="container">
             <div class="search">
-                @*submit ve action tim kiem*@
-                @using (Html.BeginForm("LayKetQuaTimKiem", "TimKiem"))
+            
+                @using (Html.BeginForm("Search","TimKiem"))
                 {
-
-
-
-                    <input type="text"  name="TuKhoa" >
+                    <input type="text"  name="stukhoa" >
                     <input type="submit" value="Tìm Kiếm">
                 }
             </div>

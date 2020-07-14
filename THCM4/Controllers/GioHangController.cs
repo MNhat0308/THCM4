@@ -193,9 +193,11 @@ namespace THCM4.Controllers
             DonDatHang ddh = new DonDatHang();
             ddh.MaKH = Khach.MaKH; 
             ddh.NgayDat = DateTime.Now;
+            ddh.NgayGiao = DateTime.Now.AddDays(1);
             ddh.TinhTrangGiaoHang = false;
             ddh.UuDai = 0;
             ddh.Dagiao = false;
+            ddh.DaThanhToan = false;
             dt.DonDatHang.Add(ddh);
             dt.SaveChanges();
             //chi tiet

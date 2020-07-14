@@ -1,0 +1,104 @@
+﻿@using THCM4.Models;
+
+@model DonDatHang
+@{
+    ViewBag.Title = "DuyetDonHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    
+}
+
+<h3 class="texth3"> Mã Đơn Hàng :<b class="maub">@Model.MaDDH
+         
+         </b></h3>
+
+@using (Html.BeginForm())
+{
+
+    IEnumerable<CTDH> lstCTDH = (IEnumerable<CTDH>)ViewBag.lstCTDH;
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                @Html.Hidden("MaDDH",Model.MaDDH)
+                <th style="color:coral" scope="col">
+                    Mã Khách Hàng:
+                    <b class="maub">
+                        @Model.KhachHang.MaKH
+                    </b>
+                </th>
+                <th style="color:coral" scope="col">
+                    Tên Khách Hàng:
+                    <b class="maub">
+                        @Model.KhachHang.HoTenKH
+                    </b>
+                </th>
+                <th style="color:coral" scope="col">
+                    Ngày Đặt:
+                    <b class="maub">
+                        @Model.NgayDat.Value.ToString("dd/MM/yyyy")
+                    </b>
+                </th>
+                <th style="color:coral" scope="col">
+                    Ngày Giao:
+                    <b class="maub">
+                        @Model.NgayGiao.Value.ToString("dd/MM/yyyy")
+                    </b>
+                </th>
+                <th style="color:coral" scope="col">
+                    Đã Thanh Toán:
+                    <b class="maub">
+                        @Html.EditorFor(Model => Model.DaThanhToan)
+                    </b>
+                </th>
+                <th style="color:coral" scope="col">
+                    Đã Giao Hàng:  
+                    <b class="maub">
+                        @Html.EditorFor(Model => Model.Dagiao)
+                    </b>
+                </th>
+            </tr>
+
+        </thead>
+    </table>
+    <table class="table">
+        <tr>
+            <th style="color:black"scope="col">Tên Sản Phẩm</th>
+           
+            <th style="color:black"scope="col">Số Lượng</th>
+            <th style="color:black"scope="col">Đơn Giá</th>
+        </tr>   
+        @foreach (var item in lstCTDH)
+        {
+            <tr >
+                <th style="color:black"scope="col">@item.TenSP</th>
+                <th style="color:black"scope="col">@item.Soluong</th>
+                <th style="color:black"scope="col">@item.Dongia.Value.ToString("#,##") VND</th>
+            </tr>
+        }
+        <tr >
+            <th  colspan="3" scope="col" style="text-align:right;color:black;">
+                Tổng Tiền:
+                <b >@Model.CTDH.Sum(n=>n.SanPham.DonGia).Value.ToString("#,##") VND</b>
+
+            </th>
+        </tr>
+
+    </table>
+    <div>
+        @Html.ActionLink("Lưu Đơn Hàng","ChuaThanhToan",null,new { @class="btn btn-success"})
+        <input type="submit" name="name" value="Lưu Đơn Hàng" />
+    </div>
+
+
+    <style>
+        .maub {
+            color: red;
+        }
+
+        .texth3 {
+            margin-left: 12px;
+            margin-bottom: 15px;
+        }
+    </style>
+}
+
+
