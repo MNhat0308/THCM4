@@ -8,6 +8,7 @@ using PagedList;
 
 namespace THCM4.Controllers
 {
+    //[Authorize(Roles = "AD,MH")]
     public class TimKiemController : Controller
     {
         WebSite1Entities dt = new WebSite1Entities();
@@ -36,7 +37,7 @@ namespace THCM4.Controllers
             {
                 page = 1;
             }
-            int SanPhamTrang = 2;
+            int SanPhamTrang = 3;
             int SoTrang = (page ?? 1);
 
             var lstSp = dt.SanPham.Where(n => n.TenSP.Contains(stukhoa));

@@ -7,6 +7,7 @@ using THCM4.Models;
 
 namespace THCM4.Controllers
 {
+    //[Authorize(Roles = "QLQ")]
     public class QuanLyQuyenController : Controller
     {
         // GET: QuanLyQuyen

@@ -4,21 +4,25 @@
 @{
     ViewBag.Title = "DuyetDonHang";
     Layout = "~/Views/Layout/AdminLayout.cshtml";
-    
+
 }
 
-<h3 class="texth3"> Mã Đơn Hàng :<b class="maub">@Model.MaDDH
-         
-         </b></h3>
+<h3 class="texth3">
+    Mã Đơn Hàng :<b class="maub">
+        @Model.MaDDH
+
+    </b>
+</h3>
 
 @using (Html.BeginForm())
 {
 
     IEnumerable<CTDH> lstCTDH = (IEnumerable<CTDH>)ViewBag.lstCTDH;
-    <table class="table">
+    <table class="table" id="tables">
         <thead class="thead-light">
             <tr>
-                @Html.Hidden("MaDDH",Model.MaDDH)
+               
+                @Html.Hidden("MaDDH", Model.MaDDH)
                 <th style="color:coral" scope="col">
                     Mã Khách Hàng:
                     <b class="maub">
@@ -50,41 +54,43 @@
                     </b>
                 </th>
                 <th style="color:coral" scope="col">
-                    Đã Giao Hàng:  
+                    Đã Giao Hàng:
                     <b class="maub">
                         @Html.EditorFor(Model => Model.Dagiao)
                     </b>
                 </th>
             </tr>
+            <tr>
+                <th style="color:black" scope="col">Mã Sản Phẩm</th>
+                <th style="color:black" scope="col">Tên Sản Phẩm</th>
+
+                <th style="color:black" scope="col">Số Lượng</th>
+                <th style="color:black" scope="col">Đơn Giá</th>
+            </tr>
+            @foreach (var item in lstCTDH)
+            {
+        <tr>
+            <th style="color:black" scope="col">@item.MaSP</th>
+            <th style="color:black" scope="col">@item.TenSP</th>
+            <th style="color:black" scope="col">@item.Soluong</th>
+            <th style="color:black" scope="col">@item.Dongia.Value.ToString("#,##") VND</th>
+        </tr>
+            }
+            <tr>
+                <th colspan="6" scope="col" style="text-align:right;color:black;">
+                    Tổng Tiền:
+                    <b>@Model.CTDH.Sum(n => n.SanPham.DonGia).Value.ToString("#,##") VND</b>
+
+                </th>
+            </tr>
 
         </thead>
-    </table>
-    <table class="table">
-        <tr>
-            <th style="color:black"scope="col">Tên Sản Phẩm</th>
-           
-            <th style="color:black"scope="col">Số Lượng</th>
-            <th style="color:black"scope="col">Đơn Giá</th>
-        </tr>   
-        @foreach (var item in lstCTDH)
-        {
-            <tr >
-                <th style="color:black"scope="col">@item.TenSP</th>
-                <th style="color:black"scope="col">@item.Soluong</th>
-                <th style="color:black"scope="col">@item.Dongia.Value.ToString("#,##") VND</th>
-            </tr>
-        }
-        <tr >
-            <th  colspan="3" scope="col" style="text-align:right;color:black;">
-                Tổng Tiền:
-                <b >@Model.CTDH.Sum(n=>n.SanPham.DonGia).Value.ToString("#,##") VND</b>
 
-            </th>
-        </tr>
 
     </table>
+
     <div>
-        @Html.ActionLink("Lưu Đơn Hàng","ChuaThanhToan",null,new { @class="btn btn-success"})
+        <input type="submit" name="name" value="In Đơn Hàng" id="btnIN" />
         <input type="submit" name="name" value="Lưu Đơn Hàng" />
     </div>
 
@@ -99,6 +105,23 @@
             margin-bottom: 15px;
         }
     </style>
+    <script>
+        $("#btnIN").click(function () {
+            var content = $("#tables").html();
+            InDonHang(content);
+        });
+        function InDonHang(content) {
+            var In = window.open('', '', 'heigh=400,width=600');
+            In.document.write('<html><head><title>DIV Contents </title>');
+            In.document.write('<html><head><title>DIV Contents </title>');
+            In.document.write(content);
+            In.document.write('</head><body>');
+            In.document.write('</body></html>');
+            In.document.close();
+            In.print();
+
+        }
+    </script>
 }
 
 

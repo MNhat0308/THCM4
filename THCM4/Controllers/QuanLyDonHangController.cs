@@ -5,9 +5,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using THCM4.Models;
+using System.Net.Mail;
 
 namespace THCM4.Controllers
 {
+    //[Authorize(Roles = "AD,QLDH")]
     public class QuanLyDonHangController : Controller
     {
         // GET: QuanLyDonHang
@@ -20,7 +22,7 @@ namespace THCM4.Controllers
         }
         public ActionResult DaThanhToan()
         {
-            var lstDaThanhToan = dt.DonDatHang.Where(n => n.DaThanhToan == true);
+            var lstDaThanhToan = dt.DonDatHang.Where(n => n.DaThanhToan == true&&n.Dagiao==false);
 
             return View(lstDaThanhToan);
         }
@@ -47,7 +49,7 @@ namespace THCM4.Controllers
             return View(ddh);
         }
         [HttpPost]
-        public ActionResult DuyetDonHang(DonDatHang ddh)
+        public ActionResult DuyetDonHang(DonDatHang ddh,KhachHang kh)
         {
             DonDatHang ddhUpdate = dt.DonDatHang.SingleOrDefault(n => n.MaDDH == ddh.MaDDH);
             ddhUpdate.DaThanhToan = ddh.DaThanhToan;
@@ -55,7 +57,29 @@ namespace THCM4.Controllers
             dt.SaveChanges();
             var lstChiTietDonHang = dt.CTDH.Where(n => n.MaDDH == ddh.MaDDH);
             ViewBag.lstCTDH = lstChiTietDonHang;
+            SendMail("xac nhan gui", "5851071050@st.utc2.edu.vn", "satthuDARK96@gmail.com", "Thegian03","xác nhận");
             return View(ddhUpdate);
+        }
+        public void SendMail(string Tieude,string nhan,string tk,string pw,string noidung)
+        {
+            MailMessage mail = new MailMessage();
+        
+
+            mail.From = new MailAddress(tk);
+            mail.To.Add(nhan);
+            mail.Subject = Tieude;
+            mail.Body = noidung;
+            mail.IsBodyHtml = true;
+
+            SmtpClient SmtpServer = new SmtpClient();
+            SmtpServer.Host = "smtp.gmail.com";
+            SmtpServer.Port = 587;
+            SmtpServer.UseDefaultCredentials = false;
+            SmtpServer.Credentials = new System.Net.NetworkCredential(tk, pw);
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
+     
         }
     }
 }

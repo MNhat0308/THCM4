@@ -6,14 +6,14 @@
     Layout = "~/Views/Layout/AdminLayout.cshtml";
     //tao webgrid
     WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
-}
+}   
 <div>
     <h3 style="text-align:center;color:darkcyan">Quản Lý Sản Phẩm</h3>
 </div>
 @Html.ActionLink("Thêm", "TaoSP", null, new { @class = "btn btn-primary" })
 
 <br />
-<br />
+<br />  
 
 
 @grid.GetHtml(
@@ -26,6 +26,7 @@
         grid.Column("MaSP", "Mã sản phẩm"),
         grid.Column("TenSP", "tên sản phẩm"),
         grid.Column("NgayCapNhat", "Ngày Cập Nhật", format: p => @Html.Raw(p.NgayCapNhat)),
+        grid.Column("HinhAnh", "Anh", format: p => @Html.Raw("<img scr=\"../Content/AdminLayout/images" + p.HinhAnh+"\">")),
         grid.Column(format: p => @Html.ActionLink("Sửa", "ChinhSua", new { id = p.MaSP }, new { @class = "btn btn-success" })),
         grid.Column(format: p => @Html.ActionLink("Xoá", "Xoa", new { id = p.MaSP }, new { @class = "btn btn-danger" }))
         ))

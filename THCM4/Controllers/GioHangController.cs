@@ -8,6 +8,8 @@ using THCM4.Controllers;
 
 namespace THCM4.Controllers
 {
+
+    //[Authorize(Roles = "MH,AD")]
     public class GioHangController : Controller
     {
         WebSite1Entities dt = new WebSite1Entities();

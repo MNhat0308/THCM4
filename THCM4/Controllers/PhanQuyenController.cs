@@ -7,6 +7,7 @@ using THCM4.Models;
 
 namespace THCM4.Controllers
 {
+    //[Authorize(Roles = "AD,QLQ")]
     public class PhanQuyenController : Controller
     {
         WebSite1Entities dt = new WebSite1Entities();
@@ -38,7 +39,7 @@ namespace THCM4.Controllers
         {
             //Phan lai quyen
             var lstDaPhanQuyen = dt.LoaiTV_Quyen.Where(n => n.MaLoaiTV == MaLTV);
-            if (lstDaPhanQuyen != null)
+            if (lstDaPhanQuyen.Count() != 0)
             {
                 dt.LoaiTV_Quyen.RemoveRange(lstDaPhanQuyen);
                 dt.SaveChanges();

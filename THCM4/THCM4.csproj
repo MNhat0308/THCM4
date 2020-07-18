@@ -146,6 +146,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoiController.cs" />
     <Compile Include="Controllers\NhapHangController.cs" />
     <Compile Include="Controllers\PhanQuyenController.cs" />
     <Compile Include="Controllers\QuanLyDonHangController.cs" />
@@ -270,6 +271,11 @@
     <Content Include="Content\AdminLayout\js\raphael-min.js" />
     <Content Include="Content\AdminLayout\js\script.js" />
     <Content Include="Content\AdminLayout\js\scripts.js" />
+    <Content Include="Content\AnhData\apple-iphone-11-pro-max-1-sim-512gb-cu-99-101582163478.jpg" />
+    <Content Include="Content\AnhData\iphone-8-plus-hh-600x600-600x600.jpg" />
+    <Content Include="Content\AnhData\iphone-x-64gb-hh-600x600.jpg" />
+    <Content Include="Content\AnhData\oppo-a9-600x600-trang-600x600.jpg" />
+    <Content Include="Content\AnhData\samsung-galaxy-s9-black-600x600.jpg" />
     <Content Include="Content\CSS1.css" />
     <Content Include="Content\AnhData\dell.jpg" />
     <Content Include="Content\AnhData\ipad-2018-4_1566640220.jpg" />
@@ -282,7 +288,6 @@
     <Content Include="Content\AnhData\MBair.jpg" />
     <Content Include="Content\AnhData\oppo-a9-400x460-1-400x460.png" />
     <Content Include="Content\AnhData\ss1tab.jpg" />
-    <Content Include="Content\AnhData\SS9.jpg" />
     <Content Include="Content\AnhData\tabSSa.jpeg" />
     <Content Include="Content\AnhData\Vm.jpg" />
     <Content Include="Content\AnhData\xiaominote.jpg" />
@@ -422,7 +427,6 @@
     <Content Include="Views\QuanLySanPham\Xoa.cshtml" />
     <Content Include="Views\NhapHang\NhapHang.cshtml" />
     <Content Include="Views\ThongKe\Index.cshtml" />
-    <Content Include="Views\Home\LoiPQ.cshtml" />
     <Content Include="Views\PhanQuyen\Index.cshtml" />
     <Content Include="Views\PhanQuyen\PhanQuyen.cshtml" />
     <Content Include="Views\QuanLyDonHang\ChuaThanhToan.cshtml" />
@@ -433,6 +437,7 @@
     <Content Include="Views\QuanLyQuyen\TaoMoi.cshtml" />
     <Content Include="Views\QuanLyQuyen\ChinhSua.cshtml" />
     <Content Include="Views\QuanLyQuyen\Xoa.cshtml" />
+    <Content Include="Views\Loi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

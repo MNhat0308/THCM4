@@ -38,15 +38,15 @@ namespace THCM4
             Application.UnLock();
         }
 
-        protected void XetQuyen(Object sender,EventArgs e)
+        protected void Application_AuthenticateRequest(Object sender,EventArgs e)
         {
-            var TkCooke = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if(TkCooke!=null)
+            var TkCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if(TkCookie!=null)
            {
-                var XacNhanPQ = FormsAuthentication.Decrypt(TkCooke.Value);
+                var XacNhanPQ = FormsAuthentication.Decrypt(TkCookie.Value);
                 var Quyen = XacNhanPQ.UserData.Split(new Char[] { ',' });
-                var a = new GenericPrincipal(new GenericIdentity(XacNhanPQ.Name), Quyen);
-                Context.User = a;
+                var userPrincipal = new GenericPrincipal(new GenericIdentity(XacNhanPQ.Name), Quyen);
+                Context.User = userPrincipal;
             }   
         }
     }

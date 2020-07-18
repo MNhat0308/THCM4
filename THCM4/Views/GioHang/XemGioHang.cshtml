@@ -9,7 +9,7 @@
 
 @if (Model == null || Model.Count == 0)
 {
-    <div>
+    <div class="col-lg-9 GioTrong" >
         Giỏ Hàng Trống
     </div>
 }
@@ -52,15 +52,15 @@ else
     {
 
 
-        <div class="item ">
+        <div class="item marginbottom ">
             <div class="buttons">
-                <span>@Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP }) </span>
+                <span>@Html.ActionLink("Xoá", "XoaGioHang", new { @MaSP = item.MaSP },new { @class="btn btn-warning"}) </span>
                 <br />
 
 
             </div>
 
-            <div class="image" style="height:130px;width:130px">
+            <div class="image" style="height:80px;width:130px">
                 <img src="@Url.Content("~/Content/AnhData/"+item.HinhAnh)" alt="" />
             </div>
 
@@ -78,7 +78,7 @@ else
 
             <div class="total-price" style="padding-left:75px">@item.ThanhTien.ToString("#,##") VND </div>
             <div class="total-price" style="padding-left:110px">
-                <span>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP }) </span>
+                <span>@Html.ActionLink("Sửa", "ChinhSuaGioHang", new { @MaSP = item.MaSP },new { @class="btn btn-primary"}) </span>
 
             </div>
         </div>
@@ -115,7 +115,7 @@ else
 
             </div>
         }
-        <div class="col-md-9" style="text-align:right;padding-right:80px">
+        <div class="col-md-9" style="text-align:right;padding-right:80px;margin-top:70px">
             <input type="submit" name="name" value="Đặt Hàng" class="btncapnhat" style="padding-top:5px" />
 
             <br />
@@ -125,12 +125,6 @@ else
         </div>
     }
 }
-
-
-
-
-
-
 
 <style>
     .btncapnhat {
@@ -161,6 +155,14 @@ else
         color: #5E6977;
         font-size: 18px;
         font-weight: 400;
+    }
+    .GioTrong{
+            text-align: center;
+    color: red;
+    font-size: 60px;
+    }
+    .marginbottom{
+        margin-bottom:20px;
     }
 </style>
 

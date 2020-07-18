@@ -6,14 +6,12 @@ using System.Web.Mvc;
 
 namespace THCM4.Controllers
 {
-    public class AdminController : Controller
+    public class LoiController : Controller
     {
-        // GET: Admin
-        [Authorize(Roles ="AD")]
+        // GET: Loi
         public ActionResult Index()
         {
             return View();
         }
-        
     }
 }

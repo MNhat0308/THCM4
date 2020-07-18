@@ -9,6 +9,7 @@ using CaptchaMvc;
 using System.Web.Security;
 namespace THCM4.Controllers
 {
+    
     public class HomeController : Controller
     {
         WebSite1Entities dt = new WebSite1Entities();
@@ -40,12 +41,15 @@ namespace THCM4.Controllers
             if (this.IsCaptchaValid("Captcha Không hợp lệ"))
             {
                 ViewBag.ThongBao = "Thành Công";
+                TV.MaLoaiTV = 1;
                 dt.ThanhVien.Add(TV);
                 dt.SaveChanges();
                 return View();
             }
             ViewBag.ThongBao = "Nhập lại captcha";
+            
             return View();
+           
 
         }
         [HttpGet]
@@ -53,22 +57,9 @@ namespace THCM4.Controllers
         {
             return View();
         }
-     
+        [HttpPost]
         public ActionResult Login(FormCollection f)
-
         {
-            //string Tk = f["txtTK"].ToString();
-            //string Pw = f["txtMK"].ToString();
-            //ThanhVien TV = dt.ThanhVien.SingleOrDefault(n => n.TaiKhoan == Tk && n.MatKhau == Pw);
-            //if(TV!=null)
-            //{
-            //    Session["TaiKhoan"] = TV;
-            //    return RedirectToAction("Index");
-            //}
-
-
-            //return Content("Tài Khoản Hoặc Mật Khẩu Sai");
-
             string Tk = f["txtTK"].ToString();
             string Pw = f["txtMK"].ToString();
             ThanhVien TV = dt.ThanhVien.SingleOrDefault(n => n.TaiKhoan == Tk && n.MatKhau == Pw);
@@ -81,9 +72,12 @@ namespace THCM4.Controllers
                     foreach (var item in lstQuyen)
                     {
                         Quyen += item.Quyen.MaQuyen + ",";
+
                     }
                     Quyen = Quyen.Substring(0, Quyen.Length - 1);
-                    PhanQuyen(TV.TaiKhoan.ToString(), Quyen);
+
+                    PhanQuyen(TV.MaTV.ToString(), Quyen);
+
                     Session["TaiKhoan"] = TV;
                     return RedirectToAction("Index");
                 }
@@ -94,20 +88,18 @@ namespace THCM4.Controllers
         public void PhanQuyen(string TaiKhoan ,string Quyen)
         {
             FormsAuthentication.Initialize();
-            var PQ = new FormsAuthenticationTicket(
+            var ticket = new FormsAuthenticationTicket(
                 1,
                 TaiKhoan, //user
                 DateTime.Now, //bat dau
                 DateTime.Now.AddHours(2),//ket thuc
-                false,
+                true,
                 Quyen,
-                FormsAuthentication.FormsCookieName);
-            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(PQ));
-            if(PQ.IsPersistent)
-            {
-                cookie.Expires = PQ.Expiration;
-            }
+                FormsAuthentication.FormsCookiePath);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+            if(ticket.IsPersistent) cookie.Expires = ticket.Expiration; 
             Response.Cookies.Add(cookie);
+               
         }
         public ActionResult DangXuat()
         {
@@ -115,10 +107,7 @@ namespace THCM4.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index");
         }
-        public ActionResult LoiPQ()
-        {
-            return View();
-        }
+       
       
 
 

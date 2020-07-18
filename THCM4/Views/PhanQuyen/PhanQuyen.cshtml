@@ -9,8 +9,8 @@
     IEnumerable<Quyen> lstQuyen = (IEnumerable<Quyen>)ViewBag.DsQuyen;
     IEnumerable<LoaiTV_Quyen> lstLoaiTVQuyen = (IEnumerable<LoaiTV_Quyen>)ViewBag.LoaiTVQuyen;
 }
-<h2>PhanQuyen</h2>
-<h3> Tên Loại Thành Viên: @Model.TenLoai</h3>
+
+<h3> Loại Thành Viên: @Model.TenLoai</h3>
 
 @using (Html.BeginForm())
 {
@@ -31,14 +31,14 @@
             }
             if (k != 0)
             {
-                <div class="col-md-4" style="font-size:10px">
+                <div class="col-md-4" style="margin:10px 10px 10px 10px" >
                     <input class="ckbclick" type="checkbox" checked="checked" name="@Url.Content("["+j+"].MaQuyen")" value="@lstQuyen.ElementAt(j).MaQuyen" />
                     <label for="@Url.Content("["+j+"].MaQuyen")">@lstQuyen.ElementAt(j).TenQuyen </label>
                 </div>
             }
             else
             {
-                <div>
+                <div class="col-md-4" style="margin:10px 10px 10px 10px">
                     <input class="ckbclick" type="checkbox" name="@Url.Content("["+j+"].MaQuyen")" value="@lstQuyen.ElementAt(j).MaQuyen" />
                     <label for="@Url.Content("["+j+"].MaQuyen")">@lstQuyen.ElementAt(j).TenQuyen </label>
                 </div>
@@ -51,16 +51,20 @@
     {
         for (int i = 0; i < lstQuyen.Count(); i++)
         {
-            <div>
+            <div class="col-md-4" style="margin:10px 10px 10px 10px">
                 <input class="ckbclick" style="width:30px;height:30px" type="checkbox" name="@Url.Content("["+i+"].MaQuyen")" value="@lstQuyen.ElementAt(i).MaQuyen" />
                 <label for="@Url.Content("["+i+"].MaQuyen")">@lstQuyen.ElementAt(i).TenQuyen </label>
             </div>
         }
     }
     <div class="clearfix"></div>
-    <input type="submit" name="name" value="Tiến Hành" />
+    <div style="margin-top:20px">
+        <input type="submit" name="name" value="Tiến Hành" class="btn btn-success" />
+        @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-primary" })
+    </div>
+
 }
-@Html.ActionLink("Trở về", "Index")
+
 
 <script>
     $(".ckbclick").click(function () {

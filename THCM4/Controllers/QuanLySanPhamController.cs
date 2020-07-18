@@ -9,10 +9,15 @@ using THCM4.Models;
 
 namespace THCM4.Controllers
 {
+    //[Authorize(Roles = "AD,QLSP")]
+ 
     public class QuanLySanPhamController : Controller
     {
         // GET: QuanLySanPham
+        
         WebSite1Entities dt = new WebSite1Entities();
+     
+        
         public ActionResult Index() 
         {
 
@@ -37,10 +42,16 @@ namespace THCM4.Controllers
             ViewBag.MaLoaiSP = new SelectList(dt.LoaiSP.OrderBy(n => n.TenLoai), "MaLoaiSP", "TenLoai");
             ViewBag.MaNSX = new SelectList(dt.NSX.OrderBy(n => n.TenNSX), "MaNSX", "TenNSX");
             
+            
+            if (HinhAnh == null)
+            {
+                ViewBag.UpAnhLoi1 = "Phải Chọn Ảnh";
+                return View();
+            }
             //kiem tra anh da ton tai chua
             if (HinhAnh.ContentLength > 0)
             {
-                if(HinhAnh.ContentType!="image/jpeg"&&HinhAnh.ContentType!="image/png" && HinhAnh.ContentType != "image/jpg" && HinhAnh.ContentType != "image/gif")
+                if (HinhAnh.ContentType != "image/jpeg" && HinhAnh.ContentType != "image/png" && HinhAnh.ContentType != "image/jpg" && HinhAnh.ContentType != "image/gif")
                 {
                     ViewBag.UpAnhloi = "Ảnh không hợp lệ";
                 }
@@ -48,8 +59,9 @@ namespace THCM4.Controllers
                 {
                     // dua anh vao duong dan
                     var filename = Path.GetFileName(HinhAnh.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Content/AnhData"), filename);
-                    // kiem tra anh co ton tai ko
+                
+                    var path = Path.Combine(Server.MapPath("~/Content/AnhData"), filename  );
+                    
                     if (System.IO.File.Exists(path))
                     {
                         ViewBag.UpAnh = "Ảnh đã tồn tại";
@@ -62,7 +74,7 @@ namespace THCM4.Controllers
                         sp.HinhAnh = filename;
                     }
                 }
-               
+
 
             }
             dt.SanPham.Add(sp);
@@ -89,21 +101,24 @@ namespace THCM4.Controllers
         }
         [ValidateInput(false)]
         [HttpPost]
+       
         public ActionResult ChinhSua(SanPham sp)
         {
             ViewBag.MaNCC = new SelectList(dt.NCC.OrderBy(n => n.TenNCC), "MaNCC", "TenNCC", sp.MaNCC);
             ViewBag.MaLoaiSP = new SelectList(dt.LoaiSP.OrderBy(n => n.TenLoai), "MaLoaiSP", "TenLoai", sp.MaLoaiSP);
             ViewBag.MaNSX = new SelectList(dt.NSX.OrderBy(n => n.TenNSX), "MaNSX", "TenNSX", sp.MaNSX);
-            dt.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-            dt.SaveChanges();
-            return RedirectToAction("Index");
 
-            //if(ModelState.IsValid)
-            //{
-            //    dt.Entry(sp).State = System.Data.Entity.EntityState.Modified;
-            //    dt.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
+            //dt.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+            //dt.SaveChanges();
+            //return RedirectToAction("Index");
+
+            if (ModelState.IsValid)
+            {
+                dt.Entry(sp).State = System.Data.Entity.EntityState.Modified;
+                dt.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(sp);
         }
         [HttpGet]
         public ActionResult Xoa(int ?id)

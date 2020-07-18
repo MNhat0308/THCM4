@@ -11,11 +11,13 @@
 
 
 
-
-
-
-<div class=" register">
-    <h1 style="color:darkslategrey"> Đăng Ký</h1>
+<div id="ThongBao" class="alert alert-success col-lg-9 collapse">
+    <strong>ĐĂNG KÝ THÀNH CÔNG</strong>
+</div>
+    <h1 style="padding: 0px 80px 30px;
+    color: #A09F9F;
+    text-align: center;
+    font-size: 34px;" class="col-lg-9"> Đăng Ký</h1>
     @using (Html.BeginForm())
     {
         <div class="col-md-4 register-top-grid">
@@ -23,62 +25,71 @@
             <div>
                 <span>Họ Và Tên</span>
                 <input type="text" name="HoTen" value="" required="" />
-                @*@Html.TextBox("HoTen")*@
+
             </div>
             <div>
                 <span>Địa Chỉ</span>
                 <input type="text" name="DiaChi" value="" required="" />
-                @*@Html.TextBox("DiaChi")*@
+
             </div>
             <div>
                 <span>Email </span>
                 <input class="register-bottom-grid" type="text" name="Email" value="" required="" />
-                @*@Html.TextBox("Email")*@
+
             </div>
             <div>
                 <span>Số Điện Thoại </span>
                 <input type="text" name="Sdt" value="" required="" />
-                @*@Html.TextBox("Sdt")*@
+
             </div>
         </div>
         <div class="col-md-4 register-top-grid register-bottom-grid">
             <div>
                 <span>Tài Khoản</span>
                 <input type="text" name="TaiKhoan" value="" required="" />
-                @*@Html.TextBox("TaiKhoan")*@
+
             </div>
 
             <div>
                 <span>Mật Khẩu</span>
                 <input type="password" name="MatKhau" value="" required="" id="PW" />
-                @*@Html.Password("MatKhau")*@
+
             </div>
             <div>
                 <span>Nhập Lại Mật Khẩu</span>
                 <input type="password" name="NLMK" value="" required="" id="NLPW" />
-                @*@Html.Password("NLMK")*@
+
             </div>
             <div>
                 @Html.MathCaptcha();
             </div>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" id="btnsubmit">
+
         </div>
     }
-</div>
-<script>
+
+<script type="text/javascript">
     var password = document.getElementById("PW")
         , confirm_password = document.getElementById("NLPW");
-
     function validatePassword() {
         if (password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("Passwords Don't Match");
+            confirm_password.setCustomValidity("Mật Khẩu Không Khớp");
         } else {
             confirm_password.setCustomValidity('');
         }
     }
-
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
+    $(document).ready(function () {
+
+        $('#btnsubmit').click(function () {
+            $('#ThongBao').show('fade');
+
+            setTimeout(function () {
+                $('#ThongBao').hide('fade');
+            }, 2000);
+
+        });
 </script>
 
 

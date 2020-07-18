@@ -17,11 +17,9 @@
 
             <div class="col-md-4 bottom-cd simpleCart_shelfItem">
                 <div class="product-at ">
-                    <a href="">
+                    <a href="@Url.Action("XemChiTiet","SanPham",new { id=item.MaSP})">
                         <img class="img-responsive" src="@Url.Content("~/Content/AnhData/"+item.HinhAnh)" alt="">
-                        <div class="pro-grid">
-                            <span class="buy-in">Mua Ngay</span>
-                        </div>
+                     
                     </a>
                 </div>
                 <p class="tun" style="color:black">@item.TenSP</p>

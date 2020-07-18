@@ -16,6 +16,7 @@
     <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
     <script src="~/Content/js/main.js"></script>
     <script src="~/Content/js/simpleCart.min.js"></script>
+    <script src="https://kit.fontawesome.com/f1b87d782e.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="header">
@@ -45,7 +46,7 @@
                         <li class="item1">
                             <a href="#">Điện Thoại </a>
                             <ul class="cute">
-                                <li class="subitem1"><a href="#">Apple </a></li>
+                                <li class="subitem1"><a href="">Apple </a></li>
                                 <li class="subitem2"><a href="#">Sam Sung </a></li>
 
                             </ul>
@@ -96,7 +97,7 @@
 
                 </div>
                 <!---->
-                <div class="product-bottom">
+                <div class="product-bottom" style="height:800px">
                     <div class="of-left-in">
                         <h3 class="best">Bán Chạy</h3>
                     </div>
@@ -107,12 +108,15 @@
                         </div>
                         <div class=" fashion-grid1">
                             <h6 class="best2">
-                                <a href="">
+                              
+                                    <a href="#">
 
 
-                                    OPPO A9
+                                        OPPO A9
 
-                                </a>
+                                    </a>
+                             
+
                             </h6>
 
                             <span class=" price-in1"> </span>
@@ -152,7 +156,10 @@
             </div>
             @RenderBody()
 
-           
+            <button type="button" id="topbtn">
+
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            </button>
         </div>
     </div>
     <!--//content-->
@@ -195,3 +202,38 @@
     </div>
 </body>
 </html>
+<style>
+    #topbtn {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        font-size: 20px;
+        height: 40px;
+        width: 40px;
+        background: #49d327;
+        border: none;
+        color: white;
+        cursor: pointer;
+        display: none;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 60) {
+                $('#topbtn').fadeIn();
+            }
+            else {
+                $('#topbtn').fadeOut();
+            }
+        }
+        );
+
+        $('#topbtn').click(function () {
+            $('html,body').animate({ scrollTop: 0 }, 800);
+        });
+    });
+
+</script>
+

@@ -10,7 +10,7 @@ using PagedList;
 
 namespace THCM4.Controllers
 {
-    
+    //[Authorize(Roles = "AD,MH")]
     public class SanPhamController : Controller
     {
         // GET: SanPham
@@ -46,7 +46,7 @@ namespace THCM4.Controllers
                 return HttpNotFound();
             }
             //phan trang
-            int SanPhamPage = 2;
+            int SanPhamPage = 3;
             int pageHienTai = (SoTrang ?? 1);
             ViewBag.MaLoaiSP = MaLoaiSP;
             ViewBag.MaNSX = MaNSX;
