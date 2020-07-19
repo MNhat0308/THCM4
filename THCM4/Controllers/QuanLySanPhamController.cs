@@ -9,21 +9,22 @@ using THCM4.Models;
 
 namespace THCM4.Controllers
 {
-    //[Authorize(Roles = "AD,QLSP")]
- 
+
+   
     public class QuanLySanPhamController : Controller
     {
         // GET: QuanLySanPham
         
         WebSite1Entities dt = new WebSite1Entities();
-     
-        
+
+   
         public ActionResult Index() 
         {
 
             return View(dt.SanPham);
         }
         [HttpGet]
+ 
         public ActionResult TaoSP()
         {
             ViewBag.MaNCC = new SelectList(dt.NCC.OrderBy(n => n.TenNCC), "MaNCC", "TenNCC");
@@ -33,6 +34,7 @@ namespace THCM4.Controllers
             return View();
         }
         [ValidateInput(false)]
+       
         [HttpPost]
         public ActionResult TaoSP(SanPham sp, HttpPostedFileBase HinhAnh)
 
@@ -81,6 +83,7 @@ namespace THCM4.Controllers
             dt.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public ActionResult ChinhSua(int ? id)
         {
             if(id==null)
@@ -100,6 +103,7 @@ namespace THCM4.Controllers
             return View(sp);
         }
         [ValidateInput(false)]
+    
         [HttpPost]
        
         public ActionResult ChinhSua(SanPham sp)
@@ -121,6 +125,7 @@ namespace THCM4.Controllers
             return View(sp);
         }
         [HttpGet]
+       
         public ActionResult Xoa(int ?id)
         {
             if (id == null)
@@ -140,6 +145,7 @@ namespace THCM4.Controllers
             return View(sp);
         }
         [HttpPost]
+   
         public ActionResult Xoa(int id)
         {
             if (id == null)

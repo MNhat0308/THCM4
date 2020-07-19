@@ -71,7 +71,7 @@ else
 
             <div class="quantity">
 
-                <input type="text" name="name" value="@item.SoLuong">
+                <input type="text" name="name" value="@item.SoLuong" class="KiemTra">
 
             </div>
 
@@ -125,7 +125,15 @@ else
         </div>
     }
 }
-
+<script>
+    
+     $(".KiemTra").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+</script>
 <style>
     .btncapnhat {
         color: #20bf6b !important;

@@ -21,7 +21,7 @@
     <table class="table" id="tables">
         <thead class="thead-light">
             <tr>
-               
+
                 @Html.Hidden("MaDDH", Model.MaDDH)
                 <th style="color:coral" scope="col">
                     Mã Khách Hàng:
@@ -33,6 +33,12 @@
                     Tên Khách Hàng:
                     <b class="maub">
                         @Model.KhachHang.HoTenKH
+                    </b>
+                </th>
+                <th style="color:coral" scope="col">
+                    Số ĐT:
+                    <b class="maub">
+                        @Model.KhachHang.SdtKH
                     </b>
                 </th>
                 <th style="color:coral" scope="col">
@@ -77,7 +83,7 @@
         </tr>
             }
             <tr>
-                <th colspan="6" scope="col" style="text-align:right;color:black;">
+                <th colspan="4" scope="col" style="text-align:right;color:black;">
                     Tổng Tiền:
                     <b>@Model.CTDH.Sum(n => n.SanPham.DonGia).Value.ToString("#,##") VND</b>
 
@@ -90,8 +96,8 @@
     </table>
 
     <div>
-        <input type="submit" name="name" value="In Đơn Hàng" id="btnIN" />
-        <input type="submit" name="name" value="Lưu Đơn Hàng" />
+        <input type="submit" name="name" class="btn btn-success" value="In Đơn Hàng" id="btnIN" />
+        <input type="submit" name="name" class="btn btn-success" value="Lưu Đơn Hàng" />
     </div>
 
 

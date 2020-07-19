@@ -39,7 +39,8 @@
             </div>
             <div>
                 <span>Số Điện Thoại </span>
-                <input type="text" name="Sdt" value="" required="" />
+                <input type="text" name="Sdt" class="KiemTra" required="" />
+              
 
             </div>
         </div>
@@ -60,10 +61,10 @@
                 <input type="password" name="NLMK" value="" required="" id="NLPW" />
 
             </div>
-            <div>
-                @Html.MathCaptcha();
+            <div >
+                @Html.MathCaptcha()
             </div>
-            <input type="submit" value="submit" id="btnsubmit">
+            <input type="submit" value="Đăng Ký" id="btnsubmit">
 
         </div>
     }
@@ -89,6 +90,12 @@
                 $('#ThongBao').hide('fade');
             }, 2000);
 
+        });
+    $(".KiemTra").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
         });
 </script>
 
