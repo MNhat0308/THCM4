@@ -41,7 +41,7 @@ namespace THCM4.Controllers
             if (this.IsCaptchaValid("Captcha Không hợp lệ"))
             {
                 ViewBag.ThongBao = "Thành Công";
-                TV.MaLoaiTV = 3;
+                TV.MaLoaiTV = 1;
                 dt.ThanhVien.Add(TV);
                 dt.SaveChanges();
                 return View();
@@ -76,7 +76,7 @@ namespace THCM4.Controllers
                     }
                     Quyen = Quyen.Substring(0, Quyen.Length - 1);
 
-                    PhanQuyen(TV.TaiKhoan.ToString(), Quyen);
+                    PhanQuyen(TV.MaTV.ToString(), Quyen);
 
                     Session["TaiKhoan"] = TV;
                     return RedirectToAction("Index");

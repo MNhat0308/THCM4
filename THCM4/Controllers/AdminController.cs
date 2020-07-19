@@ -9,8 +9,7 @@ namespace THCM4.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        //[Authorize(Roles ="AD,QLDH,QLSP,QLQ")]
-        [Authorize(Roles = "AD,QLDH,QLSP,QLQ")]
+        [Authorize(Roles ="AD")]
         public ActionResult Index()
         {
             return View();

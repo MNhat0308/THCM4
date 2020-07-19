@@ -9,14 +9,14 @@ using System.Net.Mail;
 
 namespace THCM4.Controllers
 {
-    [Authorize(Roles = "AD,QLDH")]
+    //[Authorize(Roles = "AD,QLDH")]
     public class QuanLyDonHangController : Controller
     {
         // GET: QuanLyDonHang
         WebSite1Entities dt = new WebSite1Entities();
         public ActionResult ChuaThanhToan()
         {
-            var lstChuaThanhToan = dt.DonDatHang.Where(n => n.DaThanhToan == false&&n.Dagiao==false);
+            var lstChuaThanhToan = dt.DonDatHang.Where(n => n.DaThanhToan == false);
 
             return View(lstChuaThanhToan);
         }

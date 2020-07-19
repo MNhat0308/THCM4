@@ -7,7 +7,7 @@ using THCM4.Models;
 
 namespace THCM4.Controllers
 {
-    [Authorize(Roles = "AD,QLQ")]
+    //[Authorize(Roles = "AD,QLQ")]
     public class PhanQuyenController : Controller
     {
         WebSite1Entities dt = new WebSite1Entities();

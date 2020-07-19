@@ -7,7 +7,7 @@ using THCM4.Models;
 
 namespace THCM4.Controllers
 {
-    [Authorize(Roles = "AD,TK")]
+    //[Authorize(Roles = "AD,TK")]
     public class ThongKeController : Controller
     {
         // GET: ThongKe

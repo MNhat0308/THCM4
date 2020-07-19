@@ -72,7 +72,7 @@
                     <button class="plus-btn" type="button" name="button" >
                         <img src="~/Content/plus.svg" alt="">
                     </button>
-                    @Html.TextBox("SoLuong", item.SoLuong,null,new {@class="KiemTra" })  
+                    @Html.TextBox("SoLuong", item.SoLuong)  
                     <button class="minus-btn" type="button" name="button">
                         <img src="~/Content/minus.svg" alt="">
                     </button>
@@ -186,13 +186,6 @@
     $('.like-btn').on('click', function () {
         $(this).toggleClass('is-active');
     });
-
-     $(".KiemTra").on("keypress keyup blur",function (event) {    
-           $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-            }
-        });
 </script>
 
 
