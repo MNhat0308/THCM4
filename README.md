@@ -26,13 +26,14 @@ Lớp:Công Nghệ Thông Tin K58
 3. Ưu đãi cho từng loại khách
 
 ## Hướng dẫn sử dụng
-*Đối với khách hàng
+* Đối với khách hàng
 - Khách hàng có thể đăng ký
 - Khách hàng vãng lai không có tài khoản khi mua phải nhập thông tin dưới mục giỏ hàng mới có thể đặt hàng nếu đã có tài khoản thì bước này không cần làm
-*Đối với quản trị viên
--Admin có tất cả mọi quyền :quản lý sản phẩm,quản lý đơn hàng,quản lý quyền,thống kê
--Nhân viên Quản lý sản phẩm:được quyền quản lý sản phẩm:thêm sửa xoá
--Nhân viên quản lý đơn hàng :được quyền quản lý các đơn hàng:duyệt đơn và lưu thông tin
--Nhân viên quản lý tổng :được quyền quản lý sản phẩm và đơn hàng
+
+* Đối với quản trị viên
+- Admin có tất cả mọi quyền :quản lý sản phẩm,quản lý đơn hàng,quản lý quyền,thống kê
+- Nhân viên Quản lý sản phẩm:được quyền quản lý sản phẩm:thêm sửa xoá
+- Nhân viên quản lý đơn hàng :được quyền quản lý các đơn hàng:duyệt đơn và lưu thông tin
+- Nhân viên quản lý tổng :được quyền quản lý sản phẩm và đơn hàng
 
 Xin cám ơn!
