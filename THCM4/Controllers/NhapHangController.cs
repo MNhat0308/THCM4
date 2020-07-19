@@ -16,6 +16,7 @@ namespace THCM4.Controllers
         {
             ViewBag.MaNCC = dt.NCC;
             ViewBag.lstsp = dt.SanPham;
+            ViewBag.lstsp = dt.SanPham;
             return View();
         }
         [HttpPost]
