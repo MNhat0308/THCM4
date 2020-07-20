@@ -35,5 +35,9 @@ Lớp:Công Nghệ Thông Tin K58
 - Nhân viên Quản lý sản phẩm:được quyền quản lý sản phẩm:thêm sửa xoá
 - Nhân viên quản lý đơn hàng :được quyền quản lý các đơn hàng:duyệt đơn và lưu thông tin
 - Nhân viên quản lý tổng :được quyền quản lý sản phẩm và đơn hàng
-
+## Link bài tập
+* Đối với khách hàng
+- http://www.minhnhatthcm.somee.com
+* Đối với quản trị viên
+- www.minhnhatthcm.somee.com/Admin/Index
 Xin cám ơn!
