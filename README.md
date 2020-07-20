@@ -25,10 +25,12 @@ Lớp:Công Nghệ Thông Tin K58
 
 ## Hướng dẫn sử dụng
 * Đối với khách hàng
+- http://www.minhnhatthcm.somee.com
 - Khách hàng có thể đăng ký
 - Khách hàng vãng lai không có tài khoản khi mua phải nhập thông tin dưới mục giỏ hàng mới có thể đặt hàng nếu đã có tài khoản thì bước này không cần làm
 
 * Đối với quản trị viên
+- www.minhnhatthcm.somee.com/Admin/Index
 - Tài Khoản đăng nhập: Admin
 - Mật Khẩu đăng nhập: 123
 - Admin có tất cả mọi quyền :quản lý sản phẩm,quản lý đơn hàng,quản lý quyền,thống kê
@@ -39,10 +41,5 @@ Lớp:Công Nghệ Thông Tin K58
 - Mật Khẩu đăng nhập: 123456
 - Nhân viên quản lý đơn hàng :được quyền quản lý các đơn hàng:duyệt đơn và lưu thông tin
 
-## Link bài tập
-* Đối với khách hàng
-- http://www.minhnhatthcm.somee.com
-* Đối với quản trị viên
-- www.minhnhatthcm.somee.com/Admin/Index
 
 ## Xin cám ơn!
