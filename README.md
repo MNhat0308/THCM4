@@ -6,11 +6,9 @@ Lớp:Công Nghệ Thông Tin K58
 ## Phần 1: Công nghệ sử dụng
 - Asp.net
 - HTML
--Bootstrap
--CSS
--JQuerry
--AJAX
--SQL sever
+- Bootstrap
+- CSS
+- JavaScript
 ## Phần 2: Các chức năng đã hoàn thành
 1. Chức năng giỏ hàng:thêm,sửa,xoá sản phẩm,đặt mua 
 2. Hiển thị load danh mục các sản phẩm
@@ -31,10 +29,16 @@ Lớp:Công Nghệ Thông Tin K58
 - Khách hàng vãng lai không có tài khoản khi mua phải nhập thông tin dưới mục giỏ hàng mới có thể đặt hàng nếu đã có tài khoản thì bước này không cần làm
 
 * Đối với quản trị viên
+- Tài Khoản đăng nhập: Admin
+- Mật Khẩu đăng nhập: 123
 - Admin có tất cả mọi quyền :quản lý sản phẩm,quản lý đơn hàng,quản lý quyền,thống kê
+- Tài Khoản đăng nhập: MemberQLSP
+- Mật Khẩu đăng nhập: 123456
 - Nhân viên Quản lý sản phẩm:được quyền quản lý sản phẩm:thêm sửa xoá
+- Tài Khoản đăng nhập: MemberQLDH
+- Mật Khẩu đăng nhập: 123456
 - Nhân viên quản lý đơn hàng :được quyền quản lý các đơn hàng:duyệt đơn và lưu thông tin
-- Nhân viên quản lý tổng :được quyền quản lý sản phẩm và đơn hàng
+
 ## Link bài tập
 * Đối với khách hàng
 - http://www.minhnhatthcm.somee.com
